@@ -7,6 +7,8 @@ import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { InsightsSection } from '../../blocks/InsightsSection/config'
+import { TabSection } from '../../blocks/TabSection/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -17,6 +19,7 @@ import {
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
+
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
@@ -72,7 +75,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, InsightsSection, TabSection],
               required: true,
               admin: {
                 initCollapsed: true,

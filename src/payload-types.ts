@@ -158,7 +158,17 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'slider';
+    heroSlides?:
+      | {
+          tabLabel: string;
+          subtitle: string;
+          title: string;
+          image: string | Media;
+          link?: string | null;
+          id?: string | null;
+        }[]
+      | null;
     richText?: {
       root: {
         type: string;
@@ -200,66 +210,59 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: string;
-  title: string;
-  heroImage?: (string | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  relatedPosts?: (string | Post)[] | null;
-  categories?: (string | Category)[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  authors?: (string | User)[] | null;
-  populatedAuthors?:
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
     | {
+        title?: string | null;
+        description1?: string | null;
+        description2?: string | null;
+        leftImage: string | Media;
+        bgImage?: (string | null) | Media;
+        linkText?: string | null;
+        linkUrl?: string | null;
         id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
+        blockName?: string | null;
+        blockType: 'insightsSection';
+      }
+    | {
+        title: string;
+        description?: string | null;
+        tabs?:
+          | {
+              tabLabel: string;
+              contentTitle?: string | null;
+              tags?:
+                | {
+                    text?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              image: string | Media;
+              innerTitle?: string | null;
+              innerDescription?: string | null;
+              linkText?: string | null;
+              linkUrl?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'tabSection';
+      }
+  )[];
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
@@ -387,6 +390,56 @@ export interface FolderInterface {
   folderType?: 'media'[] | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: string;
+  title: string;
+  heroImage?: (string | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  relatedPosts?: (string | Post)[] | null;
+  categories?: (string | Category)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  authors?: (string | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1061,6 +1114,16 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
+        heroSlides?:
+          | T
+          | {
+              tabLabel?: T;
+              subtitle?: T;
+              title?: T;
+              image?: T;
+              link?: T;
+              id?: T;
+            };
         richText?: T;
         links?:
           | T
@@ -1087,6 +1150,45 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        insightsSection?:
+          | T
+          | {
+              title?: T;
+              description1?: T;
+              description2?: T;
+              leftImage?: T;
+              bgImage?: T;
+              linkText?: T;
+              linkUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        tabSection?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              tabs?:
+                | T
+                | {
+                    tabLabel?: T;
+                    contentTitle?: T;
+                    tags?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    image?: T;
+                    innerTitle?: T;
+                    innerDescription?: T;
+                    linkText?: T;
+                    linkUrl?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
