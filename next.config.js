@@ -18,6 +18,12 @@ const nextConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
+      {
+        protocol: 'https',
+        hostname: 'jbcnzvscvtnbhmydphne.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
   },
   webpack: (webpackConfig) => {

@@ -72,7 +72,10 @@ export default buildConfig({
     ...plugins,
     s3Storage({
       collections: {
-        media: true,
+        // media: true,
+        media: {
+          disableLocalStorage: true,
+        },
       },
       bucket: process.env.SUPABASE_BUCKET_NAME || '',
       config: {
