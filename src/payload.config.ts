@@ -5,6 +5,7 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
+
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
@@ -73,14 +74,14 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      bucket: process.env.S3_BUCKET || '',
+      bucket: process.env.SUPABASE_BUCKET_NAME || '',
       config: {
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+          accessKeyId: process.env.SUPABASE_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.SUPABASE_SECRET_ACCESS_KEY || '',
         },
-        region: process.env.S3_REGION || '',
-        endpoint: process.env.S3_ENDPOINT || '',
+        region: 'us-east-1',
+        endpoint: process.env.SUPABASE_S3_ENDPOINT || '',
         forcePathStyle: true,
       },
     }),
