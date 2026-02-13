@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { InsightsSectionComponent } from '@/blocks/InsightsSection/Component'
 import { TabSectionComponent } from '@/blocks/TabSection/Component'
 import { StatsSectionComponent } from '@/blocks/StatsSection/Component'
+import { CompaniesSectionComponent } from '@/blocks/CompaniesSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   insightsSection: InsightsSectionComponent,
   tabSection: TabSectionComponent,
   statsSection: StatsSectionComponent,
+  companiesSection: CompaniesSectionComponent,
 }
 
 export const RenderBlocks: React.FC<{
