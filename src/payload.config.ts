@@ -20,14 +20,6 @@ import { getServerSideURL } from './utilities/getURL'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-console.log('--- Payload Config Debug ---')
-console.log('Database URL exists:', !!process.env.DATABASE_URL)
-console.log('Supabase Bucket:', process.env.SUPABASE_BUCKET_NAME)
-console.log('Supabase Access Key exists:', !!process.env.SUPABASE_ACCESS_KEY_ID)
-console.log('Supabase Secret Key exists:', !!process.env.SUPABASE_SECRET_ACCESS_KEY)
-console.log('Supabase Endpoint:', process.env.SUPABASE_S3_ENDPOINT)
-console.log('---------------------------')
-
 export default buildConfig({
   admin: {
     // ... admin config ...
@@ -91,8 +83,8 @@ export default buildConfig({
           accessKeyId: process.env.SUPABASE_ACCESS_KEY_ID || '',
           secretAccessKey: process.env.SUPABASE_SECRET_ACCESS_KEY || '',
         },
-        region: 'us-east-1',
-        endpoint: process.env.SUPABASE_S3_ENDPOINT || '',
+        region: process.env.S3_REGION || 'us-east-1',
+        endpoint: process.env.SUPABASE_S3_ENDPOINT || 'https://jbcnzvscvtnbhmydphne.supabase.co/storage/v1/s3',
         forcePathStyle: true,
       },
     }),
