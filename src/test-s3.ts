@@ -32,7 +32,7 @@ async function testConnection() {
       Bucket: process.env.SUPABASE_BUCKET_NAME,
       MaxKeys: 1,
     })
-    const response = await client.send(command)
+    await client.send(command)
     console.log('✅ ListObjects Success!')
     console.log('Bucket is accessible.')
     
@@ -47,12 +47,12 @@ async function testConnection() {
     console.log('✅ Upload Success!')
     console.log('Write permissions are working.')
 
-  } catch (error: any) {
+  } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     console.error('\n❌ Connection Failed!')
-    console.error('Error Name:', error.name)
-    console.error('Error Message:', error.message)
-    if (error.$metadata) {
-        console.error('HTTP Status:', error.$metadata.httpStatusCode)
+    console.error('Error Name:', err.name)
+    console.error('Error Message:', err.message)
+    if (err.$metadata) {
+        console.error('HTTP Status:', err.$metadata.httpStatusCode)
     }
   }
 }

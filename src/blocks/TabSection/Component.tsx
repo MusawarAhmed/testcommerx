@@ -60,7 +60,7 @@ export const TabSectionComponent: React.FC<Props> = ({
                 <div className="flex flex-wrap justify-center gap-4 mb-12 border-b border-gray-200 pb-1">
                     {tabs.map((tab, index) => (
                         <button
-                            key={tab.id || index}
+                            key={tab.id || `tab-${index}`}
                             onClick={() => setActiveTabIndex(index)}
                             className={`
                                 pb-4 px-4 text-[18px] font-bold transition-all border-b-4
@@ -92,7 +92,7 @@ export const TabSectionComponent: React.FC<Props> = ({
                         {activeTab.tags && activeTab.tags.length > 0 && (
                             <div className="flex flex-wrap gap-3 mb-10">
                                 {activeTab.tags.map((tag, i) => (
-                                    <span key={tag.id || i} className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 text-sm font-medium bg-white">
+                                    <span key={tag.id || `tag-${i}`} className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 text-sm font-medium bg-white">
                                         {tag.text}
                                     </span>
                                 ))}
