@@ -45,7 +45,7 @@ export const InsightsSectionComponent: React.FC<Props> = ({
                 <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
                     {/* Left side: Image */}
                     <div className="w-full md:w-1/2">
-                        <div className="relative aspect-[4/3] w-full">
+                        <div className="relative aspect-4/3 w-full">
                             {leftImage && (
                                 <Media 
                                     resource={leftImage} 
@@ -62,8 +62,8 @@ export const InsightsSectionComponent: React.FC<Props> = ({
                             {title}
                         </h2>
 
-                        <div className="space-y-6 text-black text-[16px] leading-relaxed">
-                            <p className="font-normal">
+                        <div className="space-y-6 text-black text-[16px] font-normal leading-relaxed">
+                            <p>
                                 {description1}
                             </p>
                             <p className="font-bold text-black">

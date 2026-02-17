@@ -1,0 +1,41 @@
+{
+    "docs": [
+        {
+            "id": "1",
+            "title": "Getting Started with Next.js",
+            "slug": "getting-started-with-nextjs",
+            "content": "Next.js is a React framework for production...",
+            "publishedAt": "2024-01-01T10:00:00Z"
+        },
+        {
+            "id": "2",
+            "title": "Understanding Tailwind CSS",
+            "slug": "understanding-tailwind-css",
+            "content": "Tailwind CSS is a utility-first CSS framework...",
+            "publishedAt": "2024-01-05T10:00:00Z"
+        },
+        {
+            "id": "3",
+            "title": "Why TypeScript Matters",
+            "slug": "why-typescript-matters",
+            "content": "TypeScript adds static typing to JavaScript...",
+            "publishedAt": "2024-01-10T10:00:00Z"
+        },
+        {
+            "id": "4",
+            "title": "The Future of Web Development",
+            "slug": "future-of-web-development",
+            "content": "Web development is constantly evolving...",
+            "publishedAt": "2024-01-15T10:00:00Z"
+        }
+    ],
+    "totalDocs": 4,
+    "limit": 10,
+    "totalPages": 1,
+    "page": 1,
+    "pagingCounter": 1,
+    "hasPrevPage": false,
+    "hasNextPage": false,
+    "prevPage": null,
+    "nextPage": null
+}

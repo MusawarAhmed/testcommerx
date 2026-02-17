@@ -8,7 +8,7 @@ import {
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { anyone } from '../access/anyone'
+
 import { authenticated } from '../access/authenticated'
 
 const filename = fileURLToPath(import.meta.url)
@@ -20,8 +20,19 @@ export const Media: CollectionConfig = {
   access: {
     create: authenticated,
     delete: authenticated,
-    read: anyone,
+    read: () => true,
     update: authenticated,
+  },
+  hooks: {
+    afterRead: [
+      ({ doc }) => {
+        // Fix Supabase URL to use the public object endpoint instead of the S3 endpoint
+        if (doc.url && doc.url.includes('supabase.co') && doc.url.includes('/s3/')) {
+          doc.url = doc.url.replace('/s3/', '/object/public/')
+        }
+        return doc
+      },
+    ],
   },
   fields: [
     {

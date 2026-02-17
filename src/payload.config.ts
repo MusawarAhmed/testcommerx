@@ -72,19 +72,18 @@ export default buildConfig({
     ...plugins,
     s3Storage({
       collections: {
-        // media: true,
         media: {
           disableLocalStorage: true,
         },
       },
-      bucket: 'payload_media',
+      bucket: process.env.SUPABASE_BUCKET_NAME || 'payload_media',
       config: {
         credentials: {
-          accessKeyId: '0dcdd5339785a964c28ff1ebbdf215b6',
-          secretAccessKey: '138d3e7983eedca6d12b61e13c67b84a594501dd626be13539909b637ea4ba8d',
+          accessKeyId: process.env.SUPABASE_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.SUPABASE_SECRET_ACCESS_KEY || '',
         },
-        region: 'ap-southeast-2',
-        endpoint: 'https://jbcnzvscvtnbhmydphne.supabase.co/storage/v1/s3',
+        region: process.env.S3_REGION || 'ap-southeast-2',
+        endpoint: process.env.SUPABASE_S3_ENDPOINT || 'https://jbcnzvscvtnbhmydphne.supabase.co/storage/v1/s3',
         forcePathStyle: true,
       },
     }),

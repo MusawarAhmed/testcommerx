@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
+
 
 @config '../../../tailwind.config.mjs';
 
@@ -44,7 +46,8 @@
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 86rem;
   --font-mono: var(--font-geist-mono);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-cal: var(--font-cal-sans);
 }
 
 @layer utilities {
@@ -84,11 +87,18 @@
       max-width: var(--breakpoint-2xl);
     }
   }
+
+  .site-containers {
+      @apply w-full max-w-full mx-auto px-4 md:px-25;
+  }
 }
 
 :root {
-  --background: oklch(100% 0 0deg);
-  --foreground: oklch(14.5% 0 0deg);
+  --background: #000000;
+  --foreground: #ffffff;
+  --font-cal-sans: 'Cal Sans', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  
   --card: oklch(96.5% 0.005 265deg);
   --card-foreground: oklch(14.5% 0 0deg);
   --popover: oklch(100% 0 0deg);
@@ -203,6 +213,7 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
+  --font-cal: var(--font-cal-sans);
 }
 
 @layer base {
@@ -211,6 +222,8 @@
   }
   body {
     @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    font-family: var(--font-inter);
+    overflow-x: hidden;
   }
 }
 

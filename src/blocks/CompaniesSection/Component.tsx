@@ -7,7 +7,7 @@ export const CompaniesSectionComponent: React.FC<CompaniesSectionBlock> = (props
 
   return (
     <section className="py-20 bg-white">
-      <div className="site-container">
+      <div className="site-containers">
         {title && (
           <h2 className="text-center text-[28px] md:text-[48px] font-cal mb-16">
             <span className="text-black">{title.split(' ')[0]} </span>
