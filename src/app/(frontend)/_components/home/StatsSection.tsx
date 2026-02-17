@@ -37,7 +37,7 @@ export default function StatsSection({ data }: StatsSectionProps) {
         const url = image.url;
         if (url.startsWith('http')) return url;
         
-        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+        const serverUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || process.env.NEXT_PUBLIC_SERVER_URL || '';
         return `${serverUrl}${url}`;
     };
 
@@ -54,6 +54,7 @@ export default function StatsSection({ data }: StatsSectionProps) {
                     fill
                     className="object-cover object-center"
                     priority
+                    unoptimized
                 />
             </div>
 

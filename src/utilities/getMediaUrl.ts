@@ -17,10 +17,18 @@ export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | 
   // Check if URL already has http/https protocol
   if (url.startsWith('http://') || url.startsWith('https://')) {
     finalUrl = cacheTag ? `${url}?v=${cacheTag}` : url
+  } else if (url.startsWith('/')) {
+    // If relative, prepend IMAGE_BASE_URL if defined, otherwise keep relative
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL
+    if (imageBaseUrl) {
+      finalUrl = cacheTag ? `${imageBaseUrl}${url}?v=${cacheTag}` : `${imageBaseUrl}${url}`
+    } else {
+      finalUrl = cacheTag ? `${url}?v=${cacheTag}` : url
+    }
   } else {
-    // Otherwise prepend client-side URL
+    // Otherwise prepend client-side URL (rare case where url is path without leading slash)
     const baseUrl = getClientSideURL()
-    finalUrl = cacheTag ? `${baseUrl}${url}?v=${cacheTag}` : `${baseUrl}${url}`
+    finalUrl = cacheTag ? `${baseUrl}/${url}?v=${cacheTag}` : `${baseUrl}/${url}`
   }
 
   console.log(`[getMediaUrl] Input: ${url}, Output: ${finalUrl}`)

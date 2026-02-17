@@ -24,12 +24,14 @@ export default function InsightsSection({ data }: InsightsSectionProps) {
         // but Next.js Image handles relative paths if they are local. 
         // Assuming /api/media is proxied or we need full URL.
 
+        // If it starts with http, it is absolute.
+        // If it starts with /, prepend base url if available
         const url = image.url;
         if (!url) return '';
 
         if (url.startsWith('http')) return url;
 
-        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+        const serverUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || process.env.NEXT_PUBLIC_SERVER_URL || '';
         return `${serverUrl}${url}`;
     };
 
@@ -46,6 +48,7 @@ export default function InsightsSection({ data }: InsightsSectionProps) {
                         alt="Background Pattern"
                         fill
                         className="object-contain object-top-left"
+                        unoptimized
                     />
                 )}
             </div>
@@ -61,6 +64,7 @@ export default function InsightsSection({ data }: InsightsSectionProps) {
                                     alt={data.leftImage?.alt || data.title}
                                     fill
                                     className="object-cover rounded-xl shadow-2xl"
+                                    unoptimized
                                 />
                             )}
                         </div>

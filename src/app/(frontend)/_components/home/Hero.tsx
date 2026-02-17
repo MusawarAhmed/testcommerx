@@ -70,6 +70,7 @@ export default function Hero({ heroSlides }: HeroProps) {
                 className="h-full w-full"
             >
                 {heroSlides.map((slide, index) => {
+                    console.log('slide',slide);
                     // --- 2. Image URL Helper ---
                     // Payload returns an object. We need to extract the 'url' property.
                     let imgUrl = '';
@@ -78,20 +79,21 @@ export default function Hero({ heroSlides }: HeroProps) {
                     } else if (typeof slide.image === 'string') {
                         imgUrl = slide.image;
                     }
-
-                    // If the URL is relative (e.g. "/api/media..."), add the server domain
-                    // However, we check if it's a local public asset first
-                    const isLocalAsset = imgUrl.startsWith('/') && !imgUrl.startsWith('/api/media');
-                    const fullImgUrl = (imgUrl.startsWith('http') || isLocalAsset)
+console.log('imgUrl',imgUrl);
+                    // If the URL is relative (e.g. "/api/media..."), we can usually treat it as local relative to the current domain
+                    // unless we specifically need an absolute URL.
+                    // If it starts with http, it is absolute (e.g. S3).
+                    
+                    const fullImgUrl = (imgUrl.startsWith('http'))
                         ? imgUrl
-                        : `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}${imgUrl}`;
-
+                        : `${process.env.NEXT_PUBLIC_SERVER_URL}${imgUrl}`;
+console.log('fullImgUrl',fullImgUrl);
                     return (
                         <SwiperSlide key={slide.id || index}>
                             <div className="relative h-full w-full">
                                 {/* Background Image with Zoom Animation */}
                                 <div className="absolute inset-0 z-0">
-                                    {imgUrl && (
+                                    {fullImgUrl && (
                                         <Image
                                             src={fullImgUrl}
                                             alt={slide.title}
@@ -99,6 +101,7 @@ export default function Hero({ heroSlides }: HeroProps) {
                                             className={`object-cover transition-transform duration-6000 ease-linear ${activeIndex === index ? 'scale-110' : 'scale-100'
                                                 }`}
                                             priority={index === 0}
+                                            unoptimized
                                         />
                                     )}
                                 </div>

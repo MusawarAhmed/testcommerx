@@ -89,7 +89,7 @@ export default function TabSection({ data, legacyCapabilities }: TabSectionProps
         const url = image.url;
         if (url.startsWith('http')) return url;
         
-        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+        const serverUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || process.env.NEXT_PUBLIC_SERVER_URL || '';
         return `${serverUrl}${url}`;
     };
 
@@ -161,6 +161,7 @@ export default function TabSection({ data, legacyCapabilities }: TabSectionProps
                                                         alt={currentTab.mainTitle || 'Capability Image'}
                                                         fill
                                                         className="object-cover rounded-[4px] transition-opacity duration-500"
+                                                        unoptimized
                                                     />
                                                 )
                                             }

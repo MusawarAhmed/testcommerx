@@ -24,7 +24,7 @@ export default function CompaniesSection({ data }: CompaniesSectionProps) {
         const url = typeof image === 'string' ? image : image.url;
         if (!url) return '';
         if (url.startsWith('http')) return url;
-        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+        const serverUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || process.env.NEXT_PUBLIC_SERVER_URL || '';
         return `${serverUrl}${url}`;
     };
 
@@ -48,6 +48,7 @@ export default function CompaniesSection({ data }: CompaniesSectionProps) {
                                 alt={company.name}
                                 fill
                                 className="object-contain"
+                                unoptimized
                             />
                         </div>
                     ))}
