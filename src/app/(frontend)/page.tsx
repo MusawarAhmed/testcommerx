@@ -1,7 +1,7 @@
 import Hero, { HeroSlide } from "./_components/home/Hero";
 import InsightsSection from "./_components/home/InsightsSection";
 import StatsSection from "./_components/home/StatsSection";
-import TabSection from "./_components/home/TabSection";
+import TabSection from "./_components/common/TabSection";
 import CompaniesSection from "./_components/home/CompaniesSection";
 import CTASection from "./_components/common/CTASection";
 import { InsightsBlock, HomePageData, LayoutBlock, TabSectionBlock, StatsSectionBlock } from "./_lib/api";

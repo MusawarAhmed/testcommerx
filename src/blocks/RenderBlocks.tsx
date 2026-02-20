@@ -11,6 +11,7 @@ import { InsightsSectionComponent } from '@/blocks/InsightsSection/Component'
 import { TabSectionComponent } from '@/blocks/TabSection/Component'
 import { StatsSectionComponent } from '@/blocks/StatsSection/Component'
 import { CompaniesSectionComponent } from '@/blocks/CompaniesSection/Component'
+import { PathwaySectionComponent } from '@/blocks/PathwaySection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +23,7 @@ const blockComponents = {
   tabSection: TabSectionComponent,
   statsSection: StatsSectionComponent,
   companiesSection: CompaniesSectionComponent,
+  pathwaySection: PathwaySectionComponent,
 }
 
 export const RenderBlocks: React.FC<{

@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 export default function Header() {
     const pathname = usePathname();
-    const isLightPage = pathname === '/contact' || pathname?.startsWith('/blog') || pathname === '/privacy-policy' || pathname === '/terms-of-service';
+    const isLightPage = pathname === '/contact' || pathname?.startsWith('/blog') || pathname === '/privacy-policy' || pathname === '/terms-of-service' || pathname === '/marketing';
     const showMenu = pathname?.startsWith('/blog');
 
     return (

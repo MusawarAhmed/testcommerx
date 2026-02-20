@@ -269,6 +269,7 @@ export interface Page {
         blockType: 'statsSection';
       }
     | CompaniesSectionBlock
+    | PathwaySectionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -867,6 +868,32 @@ export interface CompaniesSectionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PathwaySectionBlock".
+ */
+export interface PathwaySectionBlock {
+  title: string;
+  description: string;
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  steps?:
+    | {
+        number: string;
+        title: string;
+        description: string;
+        align: 'left' | 'right';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pathwaySection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1239,6 +1266,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         companiesSection?: T | CompaniesSectionBlockSelect<T>;
+        pathwaySection?: T | PathwaySectionBlockSelect<T>;
       };
   meta?:
     | T
@@ -1349,6 +1377,31 @@ export interface CompaniesSectionBlockSelect<T extends boolean = true> {
     | {
         name?: T;
         logo?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PathwaySectionBlock_select".
+ */
+export interface PathwaySectionBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  steps?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        description?: T;
+        align?: T;
         id?: T;
       };
   id?: T;
