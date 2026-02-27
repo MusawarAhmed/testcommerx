@@ -13,6 +13,13 @@ import { StatsSection } from '../../blocks/StatsSection/config'
 import { CompaniesSection } from '../../blocks/CompaniesSection/config'
 import { PathwaySection } from '../../blocks/PathwaySection/config'
 import { WhyCommerxSection } from '../../blocks/WhyCommerxSection/config'
+import { WhatWeDoSection } from '../../blocks/WhatWeDoSection/config'
+import { MissionVisionSection } from '../../blocks/MissionVisionSection/config'
+import { BetterWaySection } from '../../blocks/BetterWaySection/config'
+import { AboutHeroSection } from '../../blocks/AboutHeroSection/config'
+import { MarketingHeroSection } from '../../blocks/MarketingHeroSection/config'
+import { HelpSection } from '../../blocks/HelpSection/config'
+import { CTASectionBlock } from '../../blocks/CTASectionBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -90,6 +97,13 @@ export const Pages: CollectionConfig<'pages'> = {
                 CompaniesSection,
                 PathwaySection,
                 WhyCommerxSection,
+                WhatWeDoSection,
+                MissionVisionSection,
+                BetterWaySection,
+                AboutHeroSection,
+                MarketingHeroSection,
+                HelpSection,
+                CTASectionBlock,
               ],
               required: true,
               admin: {

@@ -16,6 +16,10 @@ import { HelpSection } from '../../blocks/HelpSection/config'
 import { CTASectionBlock } from '../../blocks/CTASectionBlock/config'
 import { MarketingHeroSection } from '../../blocks/MarketingHeroSection/config'
 import { WhyCommerxSection } from '../../blocks/WhyCommerxSection/config'
+import { AboutHeroSection } from '../../blocks/AboutHeroSection/config'
+import { WhatWeDoSection } from '../../blocks/WhatWeDoSection/config'
+import { MissionVisionSection } from '../../blocks/MissionVisionSection/config'
+import { BetterWaySection } from '../../blocks/BetterWaySection/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -75,6 +79,7 @@ export const Services: CollectionConfig<'services'> = {
               type: 'blocks',
               blocks: [
                 MarketingHeroSection,
+                AboutHeroSection,
                 WhyCommerxSection,
                 HelpSection,
                 CTASectionBlock,
@@ -88,6 +93,9 @@ export const Services: CollectionConfig<'services'> = {
                 MediaBlock,
                 Archive,
                 FormBlock,
+                WhatWeDoSection,
+                MissionVisionSection,
+                BetterWaySection,
               ],
               required: true,
               admin: {

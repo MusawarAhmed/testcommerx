@@ -16,6 +16,10 @@ import { HelpSectionComponent } from '@/blocks/HelpSection/Component'
 import { CTASectionComponent } from '@/blocks/CTASectionBlock/Component'
 import { MarketingHeroSectionComponent } from '@/blocks/MarketingHeroSection/Component'
 import { WhyCommerxSectionComponent } from '@/blocks/WhyCommerxSection/Component'
+import { WhatWeDoSectionComponent } from '@/blocks/WhatWeDoSection/Component'
+import { MissionVisionSectionComponent } from '@/blocks/MissionVisionSection/Component'
+import { BetterWaySectionComponent } from '@/blocks/BetterWaySection/Component'
+import { AboutHeroSectionComponent } from '@/blocks/AboutHeroSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -32,6 +36,10 @@ const blockComponents = {
   ctaSection: CTASectionComponent,
   marketingHeroSection: MarketingHeroSectionComponent,
   whyCommerxSection: WhyCommerxSectionComponent,
+  whatWeDoSection: WhatWeDoSectionComponent,
+  missionVisionSection: MissionVisionSectionComponent,
+  betterWaySection: BetterWaySectionComponent,
+  aboutHeroSection: AboutHeroSectionComponent,
 }
 
 export const RenderBlocks: React.FC<{
@@ -51,7 +59,12 @@ export const RenderBlocks: React.FC<{
             const Block = blockComponents[blockType as keyof typeof blockComponents]
 
             if (Block) {
-              const noMarginBlocks = ['marketingHeroSection', 'whyCommerxSection', 'ctaSection']
+              const noMarginBlocks = [
+                'marketingHeroSection',
+                'whyCommerxSection',
+                'ctaSection',
+                'aboutHeroSection',
+              ]
               const hasNoMargin = noMarginBlocks.includes(blockType)
               return (
                 <div className={hasNoMargin ? '' : 'my-16'} key={index}>
