@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const TabSection: Block = {
   slug: 'tabSection',
+  interfaceName: 'TabSectionBlock',
   fields: [
     {
       name: 'title',
@@ -14,11 +15,13 @@ export const TabSection: Block = {
       name: 'description',
       type: 'textarea',
       label: 'Section Description',
-      defaultValue: 'Our expertise spans every layer of your enterprise - seamlessly connected to deliver intelligence, performance, and profitability.',
+      defaultValue:
+        'Our expertise spans every layer of your enterprise - seamlessly connected to deliver intelligence, performance, and profitability.',
     },
     {
       name: 'tabs',
       type: 'array',
+      interfaceName: 'TabItem',
       label: 'Tabs',
       minRows: 1,
       fields: [
@@ -34,44 +37,45 @@ export const TabSection: Block = {
           label: 'Content Title',
         },
         {
-            name: 'tags',
-            type: 'array',
-            label: 'Tags/Pills',
-            fields: [
-                {
-                    name: 'text',
-                    type: 'text',
-                    label: 'Tag Text',
-                }
-            ]
+          name: 'tags',
+          type: 'array',
+          interfaceName: 'TabTag',
+          label: 'Tags/Pills',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              label: 'Tag Text',
+            },
+          ],
         },
         {
-            name: 'image',
-            type: 'upload',
-            relationTo: 'media',
-            label: 'Image',
-            required: true,
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Image',
+          required: true,
         },
         {
-            name: 'innerTitle',
-            type: 'text',
-            label: 'Inner Heading',
+          name: 'innerTitle',
+          type: 'text',
+          label: 'Inner Heading',
         },
         {
-            name: 'innerDescription',
-            type: 'textarea',
-            label: 'Inner Description',
+          name: 'innerDescription',
+          type: 'textarea',
+          label: 'Inner Description',
         },
         {
-            name: 'linkText',
-            type: 'text',
-            label: 'Link Text',
-            defaultValue: 'Learn More',
+          name: 'linkText',
+          type: 'text',
+          label: 'Link Text',
+          defaultValue: 'Learn More',
         },
         {
-            name: 'linkUrl',
-            type: 'text',
-            label: 'Link URL',
+          name: 'linkUrl',
+          type: 'text',
+          label: 'Link URL',
         },
       ],
     },

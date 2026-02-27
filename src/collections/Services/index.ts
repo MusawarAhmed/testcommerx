@@ -12,12 +12,14 @@ import { TabSection } from '../../blocks/TabSection/config'
 import { StatsSection } from '../../blocks/StatsSection/config'
 import { CompaniesSection } from '../../blocks/CompaniesSection/config'
 import { PathwaySection } from '../../blocks/PathwaySection/config'
+import { HelpSection } from '../../blocks/HelpSection/config'
+import { CTASectionBlock } from '../../blocks/CTASectionBlock/config'
+import { MarketingHeroSection } from '../../blocks/MarketingHeroSection/config'
 import { WhyCommerxSection } from '../../blocks/WhyCommerxSection/config'
-import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import { revalidateService, revalidateDelete } from './hooks/revalidateService'
 
 import {
   MetaDescriptionField,
@@ -27,17 +29,14 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 
-export const Pages: CollectionConfig<'pages'> = {
-  slug: 'pages',
+export const Services: CollectionConfig<'services'> = {
+  slug: 'services',
   access: {
     create: authenticated,
     delete: authenticated,
     read: authenticatedOrPublished,
     update: authenticated,
   },
-  // This config controls what's populated by default when a page is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
   defaultPopulate: {
     title: true,
     slug: true,
@@ -48,14 +47,14 @@ export const Pages: CollectionConfig<'pages'> = {
       url: ({ data, req }) =>
         generatePreviewPath({
           slug: data?.slug,
-          collection: 'pages',
+          collection: 'services',
           req,
         }),
     },
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: data?.slug as string,
-        collection: 'pages',
+        collection: 'services',
         req,
       }),
     useAsTitle: 'title',
@@ -70,26 +69,25 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'tabs',
       tabs: [
         {
-          fields: [hero],
-          label: 'Hero',
-        },
-        {
           fields: [
             {
               name: 'layout',
               type: 'blocks',
               blocks: [
+                MarketingHeroSection,
+                WhyCommerxSection,
+                HelpSection,
+                CTASectionBlock,
+                TabSection,
+                PathwaySection,
+                InsightsSection,
+                StatsSection,
+                CompaniesSection,
                 CallToAction,
                 Content,
                 MediaBlock,
                 Archive,
                 FormBlock,
-                InsightsSection,
-                TabSection,
-                StatsSection,
-                CompaniesSection,
-                PathwaySection,
-                WhyCommerxSection,
               ],
               required: true,
               admin: {
@@ -114,13 +112,9 @@ export const Pages: CollectionConfig<'pages'> = {
             MetaImageField({
               relationTo: 'media',
             }),
-
             MetaDescriptionField({}),
             PreviewField({
-              // if the `generateUrl` function is configured
               hasGenerateFn: true,
-
-              // field paths to match the target field for data
               titlePath: 'meta.title',
               descriptionPath: 'meta.description',
             }),
@@ -138,14 +132,14 @@ export const Pages: CollectionConfig<'pages'> = {
     slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePage],
+    afterChange: [revalidateService],
     beforeChange: [populatePublishedAt],
     afterDelete: [revalidateDelete],
   },
   versions: {
     drafts: {
       autosave: {
-        interval: 3000, // We set this interval for optimal live preview
+        interval: 3000,
       },
       schedulePublish: true,
     },

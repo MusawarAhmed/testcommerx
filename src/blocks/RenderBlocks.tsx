@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload-types'
+import type { Page, Service } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
@@ -12,6 +12,10 @@ import { TabSectionComponent } from '@/blocks/TabSection/Component'
 import { StatsSectionComponent } from '@/blocks/StatsSection/Component'
 import { CompaniesSectionComponent } from '@/blocks/CompaniesSection/Component'
 import { PathwaySectionComponent } from '@/blocks/PathwaySection/Component'
+import { HelpSectionComponent } from '@/blocks/HelpSection/Component'
+import { CTASectionComponent } from '@/blocks/CTASectionBlock/Component'
+import { MarketingHeroSectionComponent } from '@/blocks/MarketingHeroSection/Component'
+import { WhyCommerxSectionComponent } from '@/blocks/WhyCommerxSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,10 +28,14 @@ const blockComponents = {
   statsSection: StatsSectionComponent,
   companiesSection: CompaniesSectionComponent,
   pathwaySection: PathwaySectionComponent,
+  helpSection: HelpSectionComponent,
+  ctaSection: CTASectionComponent,
+  marketingHeroSection: MarketingHeroSectionComponent,
+  whyCommerxSection: WhyCommerxSectionComponent,
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: (Page['layout'][0] | Service['layout'][0])[]
 }> = (props) => {
   const { blocks } = props
 
@@ -40,11 +48,13 @@ export const RenderBlocks: React.FC<{
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+            const Block = blockComponents[blockType as keyof typeof blockComponents]
 
             if (Block) {
+              const noMarginBlocks = ['marketingHeroSection', 'whyCommerxSection', 'ctaSection']
+              const hasNoMargin = noMarginBlocks.includes(blockType)
               return (
-                <div className="my-16" key={index}>
+                <div className={hasNoMargin ? '' : 'my-16'} key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

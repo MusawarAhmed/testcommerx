@@ -7,6 +7,43 @@
  */
 
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabItem".
+ */
+export type TabItem =
+  | {
+      tabLabel: string;
+      contentTitle?: string | null;
+      tags?: TabTag;
+      image: number | Media;
+      innerTitle?: string | null;
+      innerDescription?: string | null;
+      linkText?: string | null;
+      linkUrl?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabTag".
+ */
+export type TabTag =
+  | {
+      text?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyCommerxItem".
+ */
+export type WhyCommerxItem =
+  | {
+      text: string;
+      id?: string | null;
+    }[]
+  | null;
+/**
  * Supported timezones in IANA format.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -72,6 +109,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    services: Service;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -94,6 +132,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -228,31 +267,7 @@ export interface Page {
         blockName?: string | null;
         blockType: 'insightsSection';
       }
-    | {
-        title: string;
-        description?: string | null;
-        tabs?:
-          | {
-              tabLabel: string;
-              contentTitle?: string | null;
-              tags?:
-                | {
-                    text?: string | null;
-                    id?: string | null;
-                  }[]
-                | null;
-              image: number | Media;
-              innerTitle?: string | null;
-              innerDescription?: string | null;
-              linkText?: string | null;
-              linkUrl?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'tabSection';
-      }
+    | TabSectionBlock
     | {
         title: string;
         description?: string | null;
@@ -270,6 +285,7 @@ export interface Page {
       }
     | CompaniesSectionBlock
     | PathwaySectionBlock
+    | WhyCommerxSectionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -851,6 +867,18 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabSectionBlock".
+ */
+export interface TabSectionBlock {
+  title: string;
+  description?: string | null;
+  tabs?: TabItem;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tabSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CompaniesSectionBlock".
  */
 export interface CompaniesSectionBlock {
@@ -891,6 +919,141 @@ export interface PathwaySectionBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'pathwaySection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyCommerxSectionBlock".
+ */
+export interface WhyCommerxSectionBlock {
+  heading: string;
+  description?: string | null;
+  items?: WhyCommerxItem;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyCommerxSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  layout: (
+    | MarketingHeroSectionBlock
+    | WhyCommerxSectionBlock
+    | HelpSectionBlock
+    | CTASectionBlock
+    | TabSectionBlock
+    | PathwaySectionBlock
+    | {
+        title?: string | null;
+        description1?: string | null;
+        description2?: string | null;
+        leftImage: number | Media;
+        bgImage?: (number | null) | Media;
+        linkText?: string | null;
+        linkUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'insightsSection';
+      }
+    | {
+        title: string;
+        description?: string | null;
+        backgroundImage?: (number | null) | Media;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statsSection';
+      }
+    | CompaniesSectionBlock
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+  )[];
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarketingHeroSectionBlock".
+ */
+export interface MarketingHeroSectionBlock {
+  badge?: string | null;
+  heading: string;
+  description?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  heroImage: number | Media;
+  showBackgroundPatterns?: boolean | null;
+  locations?:
+    | {
+        flag?: string | null;
+        city: string;
+        addressLines?:
+          | {
+              line?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'marketingHeroSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HelpSectionBlock".
+ */
+export interface HelpSectionBlock {
+  heading: string;
+  items?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'helpSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTASectionBlock".
+ */
+export interface CTASectionBlock {
+  heading: string;
+  description?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1103,6 +1266,10 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1223,32 +1390,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        tabSection?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              tabs?:
-                | T
-                | {
-                    tabLabel?: T;
-                    contentTitle?: T;
-                    tags?:
-                      | T
-                      | {
-                          text?: T;
-                          id?: T;
-                        };
-                    image?: T;
-                    innerTitle?: T;
-                    innerDescription?: T;
-                    linkText?: T;
-                    linkUrl?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        tabSection?: T | TabSectionBlockSelect<T>;
         statsSection?:
           | T
           | {
@@ -1267,6 +1409,7 @@ export interface PagesSelect<T extends boolean = true> {
             };
         companiesSection?: T | CompaniesSectionBlockSelect<T>;
         pathwaySection?: T | PathwaySectionBlockSelect<T>;
+        whyCommerxSection?: T | WhyCommerxSectionBlockSelect<T>;
       };
   meta?:
     | T
@@ -1368,6 +1511,40 @@ export interface FormBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabSectionBlock_select".
+ */
+export interface TabSectionBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  tabs?: T | TabItemSelect<T>;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabItem_select".
+ */
+export interface TabItemSelect<T extends boolean = true> {
+  tabLabel?: T;
+  contentTitle?: T;
+  tags?: T | TabTagSelect<T>;
+  image?: T;
+  innerTitle?: T;
+  innerDescription?: T;
+  linkText?: T;
+  linkUrl?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabTag_select".
+ */
+export interface TabTagSelect<T extends boolean = true> {
+  text?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CompaniesSectionBlock_select".
  */
 export interface CompaniesSectionBlockSelect<T extends boolean = true> {
@@ -1406,6 +1583,25 @@ export interface PathwaySectionBlockSelect<T extends boolean = true> {
       };
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyCommerxSectionBlock_select".
+ */
+export interface WhyCommerxSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  items?: T | WhyCommerxItemSelect<T>;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyCommerxItem_select".
+ */
+export interface WhyCommerxItemSelect<T extends boolean = true> {
+  text?: T;
+  id?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1574,6 +1770,125 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  layout?:
+    | T
+    | {
+        marketingHeroSection?: T | MarketingHeroSectionBlockSelect<T>;
+        whyCommerxSection?: T | WhyCommerxSectionBlockSelect<T>;
+        helpSection?: T | HelpSectionBlockSelect<T>;
+        ctaSection?: T | CTASectionBlockSelect<T>;
+        tabSection?: T | TabSectionBlockSelect<T>;
+        pathwaySection?: T | PathwaySectionBlockSelect<T>;
+        insightsSection?:
+          | T
+          | {
+              title?: T;
+              description1?: T;
+              description2?: T;
+              leftImage?: T;
+              bgImage?: T;
+              linkText?: T;
+              linkUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        statsSection?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              backgroundImage?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        companiesSection?: T | CompaniesSectionBlockSelect<T>;
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarketingHeroSectionBlock_select".
+ */
+export interface MarketingHeroSectionBlockSelect<T extends boolean = true> {
+  badge?: T;
+  heading?: T;
+  description?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  heroImage?: T;
+  showBackgroundPatterns?: T;
+  locations?:
+    | T
+    | {
+        flag?: T;
+        city?: T;
+        addressLines?:
+          | T
+          | {
+              line?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HelpSectionBlock_select".
+ */
+export interface HelpSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTASectionBlock_select".
+ */
+export interface CTASectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1970,6 +2285,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'services';
+          value: number | Service;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
