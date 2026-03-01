@@ -1,22 +1,27 @@
 import type { Block } from 'payload'
 
-export const MissionVisionSection: Block = {
-  slug: 'missionVisionSection',
-  interfaceName: 'MissionVisionSectionBlock',
+export const ServicePillarsSection: Block = {
+  slug: 'servicePillarsSection',
+  interfaceName: 'ServicePillarsSectionBlock',
   fields: [
     {
       name: 'heading',
       type: 'text',
       required: true,
       label: 'Section Heading',
-      defaultValue: 'Mission & Vision',
+      defaultValue: 'What We Do',
     },
     {
-      name: 'cards',
+      name: 'introText',
+      type: 'textarea',
+      label: 'Introduction Text',
+      required: false,
+    },
+    {
+      name: 'pillars',
       type: 'array',
-      label: 'Mission/Vision Cards',
-      minRows: 2,
-      maxRows: 2,
+      label: 'Service Pillars (Cards)',
+      minRows: 1,
       fields: [
         {
           name: 'icon',
@@ -37,11 +42,17 @@ export const MissionVisionSection: Block = {
           label: 'Card Description',
           required: true,
         },
+        {
+          name: 'isHighlighted',
+          type: 'checkbox',
+          label: 'Highlight Card (Red Background)',
+          defaultValue: false,
+        },
       ],
     },
   ],
   labels: {
-    plural: 'Mission & Vision Sections',
-    singular: 'Mission & Vision Section',
+    plural: 'Service Pillars Sections',
+    singular: 'Service Pillars Section',
   },
 }

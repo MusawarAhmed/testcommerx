@@ -1,59 +1,35 @@
 import React from 'react'
 import { Media } from '@/components/Media'
-import type { Media as MediaType } from '@/payload-types'
+import type { MissionVisionSectionBlock } from '@/payload-types'
 
-type MissionVisionItem = {
-  icon: MediaType | string | null
-  title: string
-  description: string
-  id?: string
-}
-
-type Props = {
-  heading?: string
-  items?: MissionVisionItem[]
-}
-
-export const MissionVisionSectionComponent: React.FC<Props> = (props) => {
-  const { heading, items } = props
+export const MissionVisionSectionComponent: React.FC<MissionVisionSectionBlock> = (props) => {
+  const { heading, cards } = props
 
   return (
     <section className="py-20 bg-white">
       <div className="site-containers">
-        <div className="text-center mb-16">
-          <h2 className="text-[32px] md:text-[48px] font-cal text-black leading-tight">
-            {(() => {
-              const text = heading || 'Our Mission And Vision'
-              const words = text.split(' ')
-              const lastWord = words.pop()
-              return (
-                <>
-                  {words.join(' ')} <span className="text-[#D02030]">{lastWord}</span>
-                </>
-              )
-            })()}
+        {heading && (
+          <h2 className="text-center text-[32px] md:text-[48px] font-bold mb-16">
+            <span className="text-black">{heading.split(' ')[0]} </span>
+            {heading.split(' ').slice(1).join(' ').includes('&') && (
+              <span className="text-black">&amp; </span>
+            )}
+            <span className="text-red-600">
+              {heading.split(' ').slice(heading.split(' ').findIndex(w => w === '&') > -1 ? heading.split(' ').findIndex(w => w === '&') + 1 : 1).join(' ')}
+            </span>
           </h2>
-        </div>
+        )}
 
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-4xl mx-auto">
-          {items?.map((item, index) => (
-            <div
-              key={item.id || index}
-              className="flex-1 bg-white border border-gray-100 rounded-[16px] p-8 md:p-10 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-shadow duration-300"
-            >
-              {/* Icon */}
-              {item.icon && (
-                <div className="w-[64px] h-[64px] mb-6 relative shrink-0">
-                  <Media resource={item.icon} fill imgClassName="object-contain" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {cards?.map((card, index) => (
+            <div key={index} className="bg-[#F0F4F8] rounded-2xl p-10 text-center flex flex-col items-center">
+              {card.icon && typeof card.icon !== 'string' && (
+                <div className="w-20 h-20 mb-6 flex items-center justify-center">
+                  <Media resource={card.icon} imgClassName="object-contain w-full h-full" />
                 </div>
               )}
-
-              <h3 className="text-[20px] md:text-[24px] font-bold font-sans text-black mb-4">
-                {item.title}
-              </h3>
-              <p className="text-[14px] md:text-[16px] text-[#555555] font-sans leading-relaxed">
-                {item.description}
-              </p>
+              <h3 className="text-2xl font-bold text-black mb-4">{card.title}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{card.description}</p>
             </div>
           ))}
         </div>

@@ -17,9 +17,15 @@ import { CTASectionComponent } from '@/blocks/CTASectionBlock/Component'
 import { MarketingHeroSectionComponent } from '@/blocks/MarketingHeroSection/Component'
 import { WhyCommerxSectionComponent } from '@/blocks/WhyCommerxSection/Component'
 import { WhatWeDoSectionComponent } from '@/blocks/WhatWeDoSection/Component'
-import { MissionVisionSectionComponent } from '@/blocks/MissionVisionSection/Component'
 import { BetterWaySectionComponent } from '@/blocks/BetterWaySection/Component'
 import { AboutHeroSectionComponent } from '@/blocks/AboutHeroSection/Component'
+import { StorySectionComponent } from '@/blocks/StorySection/Component'
+import { ServicePillarsSectionComponent } from '@/blocks/ServicePillarsSection/Component'
+import { MissionVisionSectionComponent } from '@/blocks/MissionVisionSection/Component'
+import { ProcessCircleSectionComponent } from '@/blocks/ProcessCircleSection/Component'
+import { ValuePropsSectionComponent } from '@/blocks/ValuePropsSection/Component'
+import { GlobalPresenceSectionComponent } from '@/blocks/GlobalPresenceSection/Component'
+import { ContactSectionComponent } from '@/blocks/ContactSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -37,9 +43,15 @@ const blockComponents = {
   marketingHeroSection: MarketingHeroSectionComponent,
   whyCommerxSection: WhyCommerxSectionComponent,
   whatWeDoSection: WhatWeDoSectionComponent,
-  missionVisionSection: MissionVisionSectionComponent,
   betterWaySection: BetterWaySectionComponent,
   aboutHeroSection: AboutHeroSectionComponent,
+  storySection: StorySectionComponent,
+  servicePillarsSection: ServicePillarsSectionComponent,
+  missionVisionSection: MissionVisionSectionComponent,
+  processCircleSection: ProcessCircleSectionComponent,
+  valuePropsSection: ValuePropsSectionComponent,
+  globalPresenceSection: GlobalPresenceSectionComponent,
+  contactSection: ContactSectionComponent,
 }
 
 export const RenderBlocks: React.FC<{

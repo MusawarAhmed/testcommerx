@@ -57,18 +57,6 @@ export type WhatWeDoItem =
   | null;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MissionVisionItem".
- */
-export type MissionVisionItem =
-  | {
-      icon: number | Media;
-      title: string;
-      description: string;
-      id?: string | null;
-    }[]
-  | null;
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "BetterWayItem".
  */
 export type BetterWayItem =
@@ -322,12 +310,18 @@ export interface Page {
     | PathwaySectionBlock
     | WhyCommerxSectionBlock
     | WhatWeDoSectionBlock
-    | MissionVisionSectionBlock
     | BetterWaySectionBlock
     | AboutHeroSectionBlock
     | MarketingHeroSectionBlock
     | HelpSectionBlock
     | CTASectionBlock
+    | StorySectionBlock
+    | ServicePillarsSectionBlock
+    | MissionVisionSectionBlock
+    | ProcessCircleSectionBlock
+    | ValuePropsSectionBlock
+    | GlobalPresenceSectionBlock
+    | ContactSectionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -987,17 +981,6 @@ export interface WhatWeDoSectionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MissionVisionSectionBlock".
- */
-export interface MissionVisionSectionBlock {
-  heading: string;
-  items?: MissionVisionItem;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'missionVisionSection';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "BetterWaySectionBlock".
  */
 export interface BetterWaySectionBlock {
@@ -1084,6 +1067,136 @@ export interface CTASectionBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StorySectionBlock".
+ */
+export interface StorySectionBlock {
+  heading: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  image: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'storySection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicePillarsSectionBlock".
+ */
+export interface ServicePillarsSectionBlock {
+  heading: string;
+  introText?: string | null;
+  pillars?:
+    | {
+        icon: number | Media;
+        title: string;
+        description: string;
+        isHighlighted?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicePillarsSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionVisionSectionBlock".
+ */
+export interface MissionVisionSectionBlock {
+  heading: string;
+  cards?:
+    | {
+        icon: number | Media;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'missionVisionSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessCircleSectionBlock".
+ */
+export interface ProcessCircleSectionBlock {
+  heading: string;
+  steps?:
+    | {
+        title: string;
+        icon: number | Media;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processCircleSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValuePropsSectionBlock".
+ */
+export interface ValuePropsSectionBlock {
+  heading: string;
+  cards?:
+    | {
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'valuePropsSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlobalPresenceSectionBlock".
+ */
+export interface GlobalPresenceSectionBlock {
+  heading: string;
+  subtext: string;
+  mapImage: number | Media;
+  locations?:
+    | {
+        countryFlag: string;
+        city: string;
+        address: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'globalPresenceSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionBlock".
+ */
+export interface ContactSectionBlock {
+  heading: string;
+  subtext: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1511,12 +1624,18 @@ export interface PagesSelect<T extends boolean = true> {
         pathwaySection?: T | PathwaySectionBlockSelect<T>;
         whyCommerxSection?: T | WhyCommerxSectionBlockSelect<T>;
         whatWeDoSection?: T | WhatWeDoSectionBlockSelect<T>;
-        missionVisionSection?: T | MissionVisionSectionBlockSelect<T>;
         betterWaySection?: T | BetterWaySectionBlockSelect<T>;
         aboutHeroSection?: T | AboutHeroSectionBlockSelect<T>;
         marketingHeroSection?: T | MarketingHeroSectionBlockSelect<T>;
         helpSection?: T | HelpSectionBlockSelect<T>;
         ctaSection?: T | CTASectionBlockSelect<T>;
+        storySection?: T | StorySectionBlockSelect<T>;
+        servicePillarsSection?: T | ServicePillarsSectionBlockSelect<T>;
+        missionVisionSection?: T | MissionVisionSectionBlockSelect<T>;
+        processCircleSection?: T | ProcessCircleSectionBlockSelect<T>;
+        valuePropsSection?: T | ValuePropsSectionBlockSelect<T>;
+        globalPresenceSection?: T | GlobalPresenceSectionBlockSelect<T>;
+        contactSection?: T | ContactSectionBlockSelect<T>;
       };
   meta?:
     | T
@@ -1732,26 +1851,6 @@ export interface WhatWeDoItemSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MissionVisionSectionBlock_select".
- */
-export interface MissionVisionSectionBlockSelect<T extends boolean = true> {
-  heading?: T;
-  items?: T | MissionVisionItemSelect<T>;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MissionVisionItem_select".
- */
-export interface MissionVisionItemSelect<T extends boolean = true> {
-  icon?: T;
-  title?: T;
-  description?: T;
-  id?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "BetterWaySectionBlock_select".
  */
 export interface BetterWaySectionBlockSelect<T extends boolean = true> {
@@ -1844,6 +1943,115 @@ export interface HelpSectionBlockSelect<T extends boolean = true> {
 export interface CTASectionBlockSelect<T extends boolean = true> {
   heading?: T;
   description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StorySectionBlock_select".
+ */
+export interface StorySectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  content?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicePillarsSectionBlock_select".
+ */
+export interface ServicePillarsSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  introText?: T;
+  pillars?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        isHighlighted?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionVisionSectionBlock_select".
+ */
+export interface MissionVisionSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  cards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessCircleSectionBlock_select".
+ */
+export interface ProcessCircleSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        icon?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValuePropsSectionBlock_select".
+ */
+export interface ValuePropsSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlobalPresenceSectionBlock_select".
+ */
+export interface GlobalPresenceSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subtext?: T;
+  mapImage?: T;
+  locations?:
+    | T
+    | {
+        countryFlag?: T;
+        city?: T;
+        address?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionBlock_select".
+ */
+export interface ContactSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subtext?: T;
   id?: T;
   blockName?: T;
 }

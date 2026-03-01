@@ -1,30 +1,23 @@
 import type { Block } from 'payload'
 
-export const MissionVisionSection: Block = {
-  slug: 'missionVisionSection',
-  interfaceName: 'MissionVisionSectionBlock',
+export const ValuePropsSection: Block = {
+  slug: 'valuePropsSection',
+  interfaceName: 'ValuePropsSectionBlock',
   fields: [
     {
       name: 'heading',
       type: 'text',
       required: true,
       label: 'Section Heading',
-      defaultValue: 'Mission & Vision',
+      defaultValue: 'A Better Way With Commerx',
     },
     {
       name: 'cards',
       type: 'array',
-      label: 'Mission/Vision Cards',
-      minRows: 2,
-      maxRows: 2,
+      label: 'Value Prop Cards',
+      minRows: 4,
+      maxRows: 4,
       fields: [
-        {
-          name: 'icon',
-          type: 'upload',
-          relationTo: 'media',
-          label: 'Card Icon',
-          required: true,
-        },
         {
           name: 'title',
           type: 'text',
@@ -35,13 +28,13 @@ export const MissionVisionSection: Block = {
           name: 'description',
           type: 'textarea',
           label: 'Card Description',
-          required: true,
+          required: false,
         },
       ],
     },
   ],
   labels: {
-    plural: 'Mission & Vision Sections',
-    singular: 'Mission & Vision Section',
+    plural: 'Value Props Sections',
+    singular: 'Value Props Section',
   },
 }

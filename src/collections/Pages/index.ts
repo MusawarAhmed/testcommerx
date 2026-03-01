@@ -14,12 +14,18 @@ import { CompaniesSection } from '../../blocks/CompaniesSection/config'
 import { PathwaySection } from '../../blocks/PathwaySection/config'
 import { WhyCommerxSection } from '../../blocks/WhyCommerxSection/config'
 import { WhatWeDoSection } from '../../blocks/WhatWeDoSection/config'
-import { MissionVisionSection } from '../../blocks/MissionVisionSection/config'
 import { BetterWaySection } from '../../blocks/BetterWaySection/config'
 import { AboutHeroSection } from '../../blocks/AboutHeroSection/config'
 import { MarketingHeroSection } from '../../blocks/MarketingHeroSection/config'
 import { HelpSection } from '../../blocks/HelpSection/config'
 import { CTASectionBlock } from '../../blocks/CTASectionBlock/config'
+import { StorySection } from '../../blocks/StorySection/config'
+import { ServicePillarsSection } from '../../blocks/ServicePillarsSection/config'
+import { MissionVisionSection } from '../../blocks/MissionVisionSection/config'
+import { ProcessCircleSection } from '../../blocks/ProcessCircleSection/config'
+import { ValuePropsSection } from '../../blocks/ValuePropsSection/config'
+import { GlobalPresenceSection } from '../../blocks/GlobalPresenceSection/config'
+import { ContactSection } from '../../blocks/ContactSection/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -98,12 +104,18 @@ export const Pages: CollectionConfig<'pages'> = {
                 PathwaySection,
                 WhyCommerxSection,
                 WhatWeDoSection,
-                MissionVisionSection,
                 BetterWaySection,
                 AboutHeroSection,
                 MarketingHeroSection,
                 HelpSection,
                 CTASectionBlock,
+                StorySection,
+                ServicePillarsSection,
+                MissionVisionSection,
+                ProcessCircleSection,
+                ValuePropsSection,
+                GlobalPresenceSection,
+                ContactSection,
               ],
               required: true,
               admin: {
