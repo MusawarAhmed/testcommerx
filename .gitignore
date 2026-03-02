@@ -19,3 +19,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Design assets / scratch files (local only)
+extract_pdf.py
+public/*.pdf
+public/about_us_design/
