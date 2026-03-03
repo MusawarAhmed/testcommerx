@@ -34,17 +34,15 @@ export const AboutHeroSectionComponent: React.FC<AboutHeroSectionBlock> = (props
         </>
       )}
 
-      <div className="site-containers relative z-10 text-center space-y-4 max-w-6xl mx-auto">
+      <div className="site-containers relative z-10 text-center space-y-4 px-[210px] max-w-[1000px]">
         {badge && (
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-normal tracking-wider uppercase mb-4">
             {badge}
           </span>
         )}
-        <h1 className="text-[40px] md:text-[64px] font-cal text-black leading-tight max-w-5xl mx-auto">
-          {heading}
-        </h1>
+        <h1 className="text-[40px] md:text-[64px] font-cal text-black leading-tight">{heading}</h1>
         {description && (
-          <p className="text-[14px] md:text-[16px] font-sans text-[#555555] mx-auto max-w-3xl leading-relaxed">
+          <p className="text-[14px] md:text-[16px] font-sans text-[#555555] leading-relaxed">
             {description}
           </p>
         )}
@@ -65,7 +63,7 @@ export const AboutHeroSectionComponent: React.FC<AboutHeroSectionBlock> = (props
           {secondaryButton?.text && (
             <Link
               href={secondaryButton.link || '#'}
-              className="text-black hover:text-[#D32F2F] px-4 py-3.5 text-[16px] font-cal font-normal flex items-center gap-2 transition-all group"
+              className="text-black hover:text-[#D32F2F] rounded-sm border border-[#D32F2F] px-4 py-3.5 text-[16px] font-cal font-normal flex items-center gap-2 transition-all group"
             >
               {secondaryButton.text}
               <ArrowIcon

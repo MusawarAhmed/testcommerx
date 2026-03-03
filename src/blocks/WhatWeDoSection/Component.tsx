@@ -11,26 +11,33 @@ type WhatWeDoItem = {
 
 type Props = {
   heading?: string
+  description?: string
   items?: WhatWeDoItem[]
 }
 
 export const WhatWeDoSectionComponent: React.FC<Props> = (props) => {
-  const { heading, items } = props
+  const { heading, description, items } = props
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#F3F6FD]">
       <div className="site-containers">
-        <div className="text-center mb-16">
-          <h2 className="text-[32px] md:text-[48px] font-cal text-black leading-tight">
-            {heading || 'What We Do'}
-          </h2>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-left py-[45px]">
+            <h2 className="text-[32px] md:text-[48px] font-cal text-black leading-tight mb-4">
+              {heading || 'What We Do'}
+            </h2>
+            {description && (
+              <p className="text-[20px] font-medium text-[#555555] leading-relaxed">
+                {description}
+              </p>
+            )}
+          </div>
           {items?.map((item, index) => (
             <div
               key={item.id || index}
-              className="bg-[#F3F6FD] rounded-[16px] p-8 md:p-10 flex flex-col items-start text-left h-full hover:shadow-md transition-shadow duration-300 group"
+              className={`rounded-2xl p-8 md:p-10 flex flex-col items-start text-left h-full hover:shadow-md transition-shadow duration-300 group ${
+                index === 0 ? 'bg-[#D02030] text-white' : 'bg-[#FFFFFF] text-black'
+              }`}
             >
               {/* Icon */}
               {item.icon && (
@@ -39,10 +46,18 @@ export const WhatWeDoSectionComponent: React.FC<Props> = (props) => {
                 </div>
               )}
 
-              <h3 className="text-[18px] md:text-[20px] font-bold font-sans text-black mb-4">
+              <h3
+                className={`text-[18px] md:text-[24px] font-bold font-sans mb-4 ${
+                  index === 0 ? 'text-white' : 'text-black'
+                }`}
+              >
                 {item.title}
               </h3>
-              <p className="text-[14px] md:text-[16px] text-[#555555] font-sans leading-relaxed">
+              <p
+                className={`text-[12px] md:text-[14px] font-sans leading-relaxed ${
+                  index === 0 ? 'text-white' : 'text-[#555555]'
+                }`}
+              >
                 {item.description}
               </p>
             </div>

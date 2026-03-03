@@ -17,7 +17,7 @@ export const HelpSectionComponent: React.FC<HelpSectionBlock> = (props) => {
           {items?.map((item, index) => (
             <div
               key={item.id || index}
-              className="bg-[#F3F6FD] rounded-[16px] p-8 md:p-10 flex flex-col items-center text-center h-full hover:shadow-md transition-shadow duration-300"
+              className="bg-[#F3F6FD] rounded-2xl p-8 md:p-10 flex flex-col items-center text-center h-full hover:shadow-md transition-shadow duration-300"
             >
               <h3 className="text-[20px] md:text-[24px] font-bold font-sans text-black mb-6">
                 {item.title}

@@ -12,6 +12,13 @@ export const BetterWaySection: Block = {
       defaultValue: 'A Better Way With Commerx',
     },
     {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image/Pattern',
+      required: false,
+    },
+    {
       name: 'items',
       type: 'array',
       label: 'Feature Cards',

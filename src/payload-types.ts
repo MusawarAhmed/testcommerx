@@ -974,6 +974,7 @@ export interface WhyCommerxSectionBlock {
  */
 export interface WhatWeDoSectionBlock {
   heading: string;
+  description?: string | null;
   items?: WhatWeDoItem;
   id?: string | null;
   blockName?: string | null;
@@ -985,6 +986,7 @@ export interface WhatWeDoSectionBlock {
  */
 export interface BetterWaySectionBlock {
   heading: string;
+  backgroundImage?: (number | null) | Media;
   items?: BetterWayItem;
   id?: string | null;
   blockName?: string | null;
@@ -1835,6 +1837,7 @@ export interface WhyCommerxItemSelect<T extends boolean = true> {
  */
 export interface WhatWeDoSectionBlockSelect<T extends boolean = true> {
   heading?: T;
+  description?: T;
   items?: T | WhatWeDoItemSelect<T>;
   id?: T;
   blockName?: T;
@@ -1855,6 +1858,7 @@ export interface WhatWeDoItemSelect<T extends boolean = true> {
  */
 export interface BetterWaySectionBlockSelect<T extends boolean = true> {
   heading?: T;
+  backgroundImage?: T;
   items?: T | BetterWayItemSelect<T>;
   id?: T;
   blockName?: T;

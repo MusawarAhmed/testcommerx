@@ -12,6 +12,12 @@ export const WhatWeDoSection: Block = {
       defaultValue: 'What We Do',
     },
     {
+      name: 'description',
+      type: 'textarea',
+      label: 'Section Description',
+      required: false,
+    },
+    {
       name: 'items',
       type: 'array',
       label: 'Service Cards',

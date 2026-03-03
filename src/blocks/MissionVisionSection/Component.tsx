@@ -10,26 +10,30 @@ export const MissionVisionSectionComponent: React.FC<MissionVisionSectionBlock> 
       <div className="site-containers">
         {heading && (
           <h2 className="text-center text-[32px] md:text-[48px] font-bold mb-16">
-            <span className="text-black">{heading.split(' ')[0]} </span>
-            {heading.split(' ').slice(1).join(' ').includes('&') && (
-              <span className="text-black">&amp; </span>
+            {heading.split(' ').length > 1 ? (
+              <>
+                <span className="text-black">{heading.split(' ').slice(0, -1).join(' ')} </span>
+                <span className="text-red-600">{heading.split(' ').slice(-1)[0]}</span>
+              </>
+            ) : (
+              <span className="text-red-600">{heading}</span>
             )}
-            <span className="text-red-600">
-              {heading.split(' ').slice(heading.split(' ').findIndex(w => w === '&') > -1 ? heading.split(' ').findIndex(w => w === '&') + 1 : 1).join(' ')}
-            </span>
           </h2>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {cards?.map((card, index) => (
-            <div key={index} className="bg-[#F0F4F8] rounded-2xl p-10 text-center flex flex-col items-center">
+            <div
+              key={index}
+              className="bg-[#F3F6FD] rounded-2xl p-10 text-center flex flex-col items-center"
+            >
               {card.icon && typeof card.icon !== 'string' && (
                 <div className="w-20 h-20 mb-6 flex items-center justify-center">
                   <Media resource={card.icon} imgClassName="object-contain w-full h-full" />
                 </div>
               )}
               <h3 className="text-2xl font-bold text-black mb-4">{card.title}</h3>
-              <p className="text-gray-700 text-lg leading-relaxed">{card.description}</p>
+              <p className="text-black text-base leading-relaxed">{card.description}</p>
             </div>
           ))}
         </div>
