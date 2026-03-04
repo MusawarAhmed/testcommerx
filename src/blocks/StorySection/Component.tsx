@@ -1,14 +1,28 @@
 import React from 'react'
+import Image from 'next/image'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import type { StorySectionBlock } from '@/payload-types'
 
 export const StorySectionComponent: React.FC<StorySectionBlock> = (props) => {
-  const { heading, content, image } = props
+  const { heading, content, image, showBackgroundPatterns } = props
 
   return (
-    <section className="py-32 bg-white">
-      <div className="site-containers">
+    <section className="py-32 bg-white relative overflow-hidden">
+      {showBackgroundPatterns && (
+        <>
+          {/* Background Pattern - Right Side */}
+          <div className="absolute top-[35%] -right-116 w-[800px] h-[900px] z-0 pointer-events-none rotate-180 opacity-60">
+            <Image
+              src="/home-insight-sec-bg.svg"
+              alt="Background Pattern"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </>
+      )}
+      <div className="site-containers relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-7">
             {heading && (

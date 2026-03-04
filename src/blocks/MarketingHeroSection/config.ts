@@ -49,38 +49,6 @@ export const MarketingHeroSection: Block = {
       label: 'Show Background Decorative Patterns',
       defaultValue: true,
     },
-    {
-      name: 'locations',
-      type: 'array',
-      label: 'Office Locations (shown on mobile)',
-      dbName: 'mkt_hero_locs', // Shorten DB name
-      fields: [
-        {
-          name: 'flag',
-          type: 'text',
-          label: 'Flag Emoji',
-        },
-        {
-          name: 'city',
-          type: 'text',
-          label: 'City Name',
-          required: true,
-        },
-        {
-          name: 'addressLines',
-          type: 'array',
-          label: 'Address Lines',
-          dbName: 'addr_lines', // Shorten DB name
-          fields: [
-            {
-              name: 'line',
-              type: 'text',
-              label: 'Line',
-            },
-          ],
-        },
-      ],
-    },
   ],
   labels: {
     plural: 'Marketing Hero Sections',

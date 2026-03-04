@@ -24,32 +24,6 @@ export const GlobalPresenceSection: Block = {
       label: 'World Map Visual',
       required: true,
     },
-    {
-      name: 'locations',
-      type: 'array',
-      label: 'Office Locations',
-      fields: [
-        {
-          name: 'countryFlag',
-          type: 'text',
-          label: 'Country Flag Emoji',
-          defaultValue: '🇨🇦',
-          required: true,
-        },
-        {
-          name: 'city',
-          type: 'text',
-          label: 'City Name',
-          required: true,
-        },
-        {
-          name: 'address',
-          type: 'textarea',
-          label: 'Address & Phone (Lines)',
-          required: true,
-        }
-      ]
-    }
   ],
   labels: {
     plural: 'Global Presence Sections',

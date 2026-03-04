@@ -3,44 +3,66 @@ import { Media } from '@/components/Media'
 import type { GlobalPresenceSectionBlock } from '@/payload-types'
 
 export const GlobalPresenceSectionComponent: React.FC<GlobalPresenceSectionBlock> = (props) => {
-  const { heading, subtext, mapImage, locations } = props
+  const { heading, subtext, mapImage } = props
+
+  // Split heading to color the second word red
+  const headingWords = heading?.split(' ') || []
+  const firstWord = headingWords[0]
+  const remainingWords = headingWords.slice(1).join(' ')
 
   return (
-    <section className="pt-32 pb-10 relative z-10 bg-white overflow-hidden">
+    <section className="py-24 bg-white overflow-hidden">
       <div className="site-containers">
-        <div className="text-center space-y-4 mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-bold tracking-wider uppercase mb-4">
-            Contact
-          </span>
-          {heading && <h1 className="text-[48px] md:text-[64px] font-cal text-black leading-tight">{heading}</h1>}
-          {subtext && <p className="text-[16px] font-sans text-gray-600 max-w-2xl mx-auto">{subtext}</p>}
+        <div className="text-center mb-16">
+          {heading && (
+            <h2 className="text-[40px] md:text-[56px] font-cal text-black mb-6">
+              {firstWord} <span className="text-[#D02030]">{remainingWords}</span>
+            </h2>
+          )}
+          {subtext && (
+            <p className="text-[17px] leading-relaxed text-[#4A4A4A] max-w-3xl mx-auto font-sans">
+              {subtext}
+            </p>
+          )}
         </div>
 
-        <div className="relative w-full aspect-video md:aspect-[21/9] h-[300px] md:h-[600px] max-w-6xl mx-auto mb-20 z-0 text-center">
-            {mapImage && typeof mapImage !== 'string' && (
-              <Media resource={mapImage} imgClassName="object-contain w-full h-full object-center" fill />
-            )}
-            
-            {/* We can statically place the first two items for Calgary/Phoenix as placeholders if needed, 
-                or just let the mobile stack display them below. We'll use the mobile stack approach for all 
-                provided locations so they are always visible without complicated responsive absolute positioning. */}
-        </div>
-        
-        {locations && locations.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12 justify-center">
-            {locations.map((loc, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-lg shadow-lg border border-gray-100 z-10">
-                <div className="flex items-center gap-3 mb-3">
-                    <span className="text-2xl">{loc.countryFlag}</span>
-                    <h3 className="text-[18px] font-bold font-cal text-black">{loc.city}</h3>
-                </div>
-                <div className="space-y-1 font-sans text-[14px] text-gray-600 whitespace-pre-wrap">
-                    {loc.address}
-                </div>
+        <div className="relative w-full max-w-6xl mx-auto">
+          {/* Map Container */}
+          <div className="relative aspect-video md:aspect-[21/9] w-full">
+            {mapImage && typeof mapImage !== 'string' ? (
+              <Media resource={mapImage} imgClassName="object-contain w-full h-full" fill />
+            ) : (
+              <div className="w-full h-full bg-gray-50 flex items-center justify-center border border-dashed border-gray-200 rounded-lg text-gray-400 font-sans">
+                World Map Visual (Upload image in CMS)
               </div>
-            ))}
+            )}
           </div>
-        )}
+
+          {/* Legend */}
+          <div className="mt-12 md:mt-0 md:absolute md:bottom-[-20px] md:left-0 flex items-center gap-8 text-[14px] font-sans text-gray-700">
+            <div className="flex items-center gap-2">
+              <div className="relative w-4 h-5 flex items-center justify-center">
+                <svg
+                  width="15"
+                  height="20"
+                  viewBox="0 0 15 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 7.34337C0 3.26372 3.35938 0 7.5 0C11.6406 0 15 3.26372 15 7.34337C15 11.967 10.3125 17.5231 8.35938 19.6212C7.89062 20.1263 7.10938 20.1263 6.64062 19.6212C4.6875 17.5231 0 11.967 0 7.34337ZM7.5 9.94658C8.86719 9.94658 10 8.81982 10 7.45993C10 6.10005 8.86719 4.97329 7.5 4.97329C6.13281 4.97329 5 6.10005 5 7.45993C5 8.81982 6.13281 9.94658 7.5 9.94658Z"
+                    fill="#D02030"
+                  />
+                </svg>
+              </div>
+              <span className="font-medium">Our Offices</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#D02030]" />
+              <span className="font-medium">Our Clients</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

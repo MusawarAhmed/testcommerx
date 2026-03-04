@@ -1,13 +1,24 @@
 import React from 'react'
+import Image from 'next/image'
 import { Media } from '@/components/Media'
 import type { ProcessCircleSectionBlock } from '@/payload-types'
 
 export const ProcessCircleSectionComponent: React.FC<ProcessCircleSectionBlock> = (props) => {
-  const { heading, steps, centerImage } = props
+  const { heading, steps, centerImage, showBackgroundPatterns } = props
 
   return (
-    <section className="py-24 bg-white">
-      <div className="site-containers">
+    <section className="py-24 bg-white relative overflow-hidden">
+      {showBackgroundPatterns && (
+        <div className="absolute top-0 -right-116 w-[800px] h-[900px] z-0 pointer-events-none rotate-180 opacity-60">
+          <Image
+            src="/home-insight-sec-bg.svg"
+            alt="Background Pattern"
+            fill
+            className="object-contain"
+          />
+        </div>
+      )}
+      <div className="site-containers relative z-10">
         {heading && (
           <h2 className="text-center text-[32px] md:text-[48px] font-bold mb-20">
             <span className="text-black">

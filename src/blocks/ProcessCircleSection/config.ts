@@ -46,6 +46,12 @@ export const ProcessCircleSection: Block = {
         },
       ],
     },
+    {
+      name: 'showBackgroundPatterns',
+      type: 'checkbox',
+      label: 'Show Background Decorative Patterns',
+      defaultValue: true,
+    },
   ],
   labels: {
     plural: 'Process Circle Sections',

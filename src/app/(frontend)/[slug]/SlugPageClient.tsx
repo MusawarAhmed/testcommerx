@@ -2,7 +2,7 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 
-const PageClient: React.FC = () => {
+const SlugPageClient: React.FC = () => {
   /* Force the header to be dark mode while we have an image behind it */
   const { setHeaderTheme } = useHeaderTheme()
 
@@ -12,4 +12,4 @@ const PageClient: React.FC = () => {
   return <React.Fragment />
 }
 
-export default PageClient
+export default SlugPageClient

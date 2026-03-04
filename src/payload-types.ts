@@ -986,6 +986,7 @@ export interface WhatWeDoSectionBlock {
 export interface BetterWaySectionBlock {
   heading: string;
   backgroundImage?: (number | null) | Media;
+  showBackgroundPatterns?: boolean | null;
   items?: BetterWayItem;
   id?: string | null;
   blockName?: string | null;
@@ -1024,19 +1025,6 @@ export interface MarketingHeroSectionBlock {
   buttonLink?: string | null;
   heroImage: number | Media;
   showBackgroundPatterns?: boolean | null;
-  locations?:
-    | {
-        flag?: string | null;
-        city: string;
-        addressLines?:
-          | {
-              line?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'marketingHeroSection';
@@ -1091,6 +1079,7 @@ export interface StorySectionBlock {
     [k: string]: unknown;
   };
   image: number | Media;
+  showBackgroundPatterns?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'storySection';
@@ -1148,6 +1137,7 @@ export interface ProcessCircleSectionBlock {
         id?: string | null;
       }[]
     | null;
+  showBackgroundPatterns?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'processCircleSection';
@@ -1177,14 +1167,6 @@ export interface GlobalPresenceSectionBlock {
   heading: string;
   subtext: string;
   mapImage: number | Media;
-  locations?:
-    | {
-        countryFlag: string;
-        city: string;
-        address: string;
-        id?: string | null;
-      }[]
-    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'globalPresenceSection';
@@ -1858,6 +1840,7 @@ export interface WhatWeDoItemSelect<T extends boolean = true> {
 export interface BetterWaySectionBlockSelect<T extends boolean = true> {
   heading?: T;
   backgroundImage?: T;
+  showBackgroundPatterns?: T;
   items?: T | BetterWayItemSelect<T>;
   id?: T;
   blockName?: T;
@@ -1907,19 +1890,6 @@ export interface MarketingHeroSectionBlockSelect<T extends boolean = true> {
   buttonLink?: T;
   heroImage?: T;
   showBackgroundPatterns?: T;
-  locations?:
-    | T
-    | {
-        flag?: T;
-        city?: T;
-        addressLines?:
-          | T
-          | {
-              line?: T;
-              id?: T;
-            };
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }
@@ -1957,6 +1927,7 @@ export interface StorySectionBlockSelect<T extends boolean = true> {
   heading?: T;
   content?: T;
   image?: T;
+  showBackgroundPatterns?: T;
   id?: T;
   blockName?: T;
 }
@@ -2011,6 +1982,7 @@ export interface ProcessCircleSectionBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  showBackgroundPatterns?: T;
   id?: T;
   blockName?: T;
 }
@@ -2038,14 +2010,6 @@ export interface GlobalPresenceSectionBlockSelect<T extends boolean = true> {
   heading?: T;
   subtext?: T;
   mapImage?: T;
-  locations?:
-    | T
-    | {
-        countryFlag?: T;
-        city?: T;
-        address?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }

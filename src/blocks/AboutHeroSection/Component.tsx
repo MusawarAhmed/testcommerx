@@ -13,22 +13,12 @@ export const AboutHeroSectionComponent: React.FC<AboutHeroSectionBlock> = (props
       {showBackgroundPatterns && (
         <>
           {/* Top Background Pattern */}
-          <div className="absolute -top-25 -left-125 w-[800px] h-[900px] z-0 pointer-events-none opacity-60">
+          <div className="absolute -top-60 -left-125 w-[800px] h-[900px] z-0 pointer-events-none opacity-60">
             <Image
               src="/home-insight-sec-bg.svg"
               alt="Background Pattern"
               fill
               className="object-contain object-top-left"
-            />
-          </div>
-
-          {/* Bottom Background Pattern */}
-          <div className="absolute top-[35%] -right-116 w-[800px] h-[900px] z-0 pointer-events-none rotate-180 opacity-60">
-            <Image
-              src="/home-insight-sec-bg.svg"
-              alt="Background Pattern"
-              fill
-              className="object-contain"
             />
           </div>
         </>

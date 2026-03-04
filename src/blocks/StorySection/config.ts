@@ -24,6 +24,12 @@ export const StorySection: Block = {
       label: 'Side Image',
       required: true,
     },
+    {
+      name: 'showBackgroundPatterns',
+      type: 'checkbox',
+      label: 'Show Background Decorative Patterns',
+      defaultValue: true,
+    },
   ],
   labels: {
     plural: 'Story Sections',

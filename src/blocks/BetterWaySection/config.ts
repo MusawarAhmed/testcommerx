@@ -19,6 +19,12 @@ export const BetterWaySection: Block = {
       required: false,
     },
     {
+      name: 'showBackgroundPatterns',
+      type: 'checkbox',
+      label: 'Show Background Decorative Patterns',
+      defaultValue: true,
+    },
+    {
       name: 'items',
       type: 'array',
       label: 'Feature Cards',

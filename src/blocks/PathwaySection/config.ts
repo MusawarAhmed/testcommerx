@@ -16,7 +16,8 @@ export const PathwaySection: Block = {
       label: 'Description',
       type: 'textarea',
       required: true,
-      defaultValue: 'Technical And Marketing Complexity Becomes Manageable Through An Integrated, Accountable Process Built For Measurable Outcomes.',
+      defaultValue:
+        'Technical And Marketing Complexity Becomes Manageable Through An Integrated, Accountable Process Built For Measurable Outcomes.',
     },
     {
       name: 'features',
