@@ -33,7 +33,7 @@ export default function HelpSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {helpItems.map((item, index) => (
             <div
-              key={`${item.id || item.title}-${index}`}
+              key={`${item.title}-${index}`}
               className="bg-[#F3F6FD] rounded-[16px] p-8 md:p-10 flex flex-col items-center text-center h-full hover:shadow-md transition-shadow duration-300"
             >
               <h3 className="text-[20px] md:text-[24px] font-bold font-sans text-black mb-6">
