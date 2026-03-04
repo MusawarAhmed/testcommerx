@@ -4,10 +4,10 @@ export const BLOG_POSTS = [
         slug: "integrating-marketing-and-it-the-future-of-intelligent-growth",
         title: "Integrating Marketing and IT: The Future of Intelligent Growth",
         description: "Our journey is guided by a clear vision - is to be at the forefront of transformative solutions that shape to the industries and enrich lives. This vision is deeply rooted in our core values: excellence, innovation, integrity, and collaboration.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        image: "/Rectangle-3-blog.png",
         category: "Marketing",
-        author: "Sarah Johnson",
-        date: "Feb 10, 2026",
+        author: "Mudassar Ijaz",
+        date: "Feb 22, 2026",
         content: `
             <p>In today's rapidly evolving digital landscape, the convergence of marketing and information technology (IT) is no longer just a trend—it's a necessity for intelligent growth. As businesses strive to deliver seamless customer experiences, the silos between these two critical functions must be broken down.</p>
             
@@ -32,10 +32,10 @@ export const BLOG_POSTS = [
         slug: "how-iot-is-reshaping-enterprise-operations",
         title: "How IoT is Reshaping Enterprise Operations",
         description: "The Internet of Things (IoT) is transforming how enterprises operate, offering unprecedented visibility and control over assets and processes. From predictive maintenance to smart logistics, IoT is driving efficiency and innovation.",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+        image: "/Rectangle-2.png",
         category: "IoT",
-        author: "Michael Chen",
-        date: "Feb 08, 2026",
+        author: "Mudassar Ijaz",
+        date: "Feb 26, 2026",
         content: `
             <p>The Internet of Things (IoT) has graduated from a buzzword to a cornerstone of modern enterprise operations. By connecting physical assets to the digital world, businesses are gaining real-time insights that were previously impossible to obtain.</p>
 
@@ -56,7 +56,7 @@ export const BLOG_POSTS = [
         slug: "the-role-of-telematics-in-modern-fleet-management",
         title: "The Role of Telematics in Modern Fleet Management",
         description: "Telematics systems are revolutionizing fleet management by providing real-time data on vehicle location, driver behavior, and fuel consumption. This technology is essential for optimizing routes and ensuring safety.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        image: "/Rectangle4.png",
         category: "Telematics",
         author: "Emily Davis",
         date: "Feb 05, 2026",
@@ -80,10 +80,10 @@ export const BLOG_POSTS = [
         slug: "why-tech-innovation-is-key-to-business-survival",
         title: "Why Tech Innovation is Key to Business Survival",
         description: "In an era of rapid technological change, innovation is not just a competitive advantage—it's a survival strategy. Businesses must adapt to new technologies like AI and blockchain to stay relevant.",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+        image: "/Rectangle-3-thumb.png",
         category: "Tech",
-        author: "David Wilson",
-        date: "Feb 01, 2026",
+        author: "Mudassar Ijaz",
+        date: "Feb 22, 2026",
         content: `
             <p>The pace of technological change is accelerating, and businesses that fail to keep up risk becoming obsolete. Innovation is no longer a luxury; it is a fundamental requirement for survival in the digital age.</p>
 
