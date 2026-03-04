@@ -921,7 +921,6 @@ export interface CompaniesSectionBlock {
   title: string;
   companies?:
     | {
-        name: string;
         logo: number | Media;
         id?: string | null;
       }[]
@@ -1781,7 +1780,6 @@ export interface CompaniesSectionBlockSelect<T extends boolean = true> {
   companies?:
     | T
     | {
-        name?: T;
         logo?: T;
         id?: T;
       };

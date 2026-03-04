@@ -15,7 +15,7 @@ export const CompaniesSectionComponent: React.FC<CompaniesSectionBlock> = (props
           </h2>
         )}
 
-        <div className="flex flex-wrap items-center justify-center md:justify-between gap-10 md:gap-8">
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-8">
           {companies?.map((company) => {
             if (typeof company.logo === 'string') return null
 

@@ -18,12 +18,6 @@ export const CompaniesSection: Block = {
       minRows: 1,
       fields: [
         {
-          name: 'name',
-          type: 'text',
-          label: 'Company Name',
-          required: true,
-        },
-        {
           name: 'logo',
           type: 'upload',
           relationTo: 'media',
