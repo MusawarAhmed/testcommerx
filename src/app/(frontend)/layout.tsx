@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 
           <Header />
-          <main className="min-h-screen">
+          <main className="min-h-screen bg-white">
             {children}
           </main>
           <Footer />
