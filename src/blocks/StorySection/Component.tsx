@@ -7,7 +7,7 @@ export const StorySectionComponent: React.FC<StorySectionBlock> = (props) => {
   const { heading, content, image } = props
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-32 bg-white">
       <div className="site-containers">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-7">

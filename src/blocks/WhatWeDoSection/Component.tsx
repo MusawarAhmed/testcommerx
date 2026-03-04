@@ -19,7 +19,7 @@ export const WhatWeDoSectionComponent: React.FC<Props> = (props) => {
   const { heading, description, items } = props
 
   return (
-    <section className="py-20 bg-[#F3F6FD]">
+    <section className="py-32 bg-[#F3F6FD]">
       <div className="site-containers">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="text-left py-[45px]">

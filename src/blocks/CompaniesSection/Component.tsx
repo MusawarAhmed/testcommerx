@@ -16,16 +16,15 @@ export const CompaniesSectionComponent: React.FC<CompaniesSectionBlock> = (props
         )}
 
         <div className="flex flex-wrap items-center justify-center md:justify-between gap-10 md:gap-8">
-          {companies?.map((company, index) => {
-            if (typeof company.logo === 'string') return null;
+          {companies?.map((company) => {
+            if (typeof company.logo === 'string') return null
 
             return (
-              <div key={index} className="relative w-[180px] h-[60px] transition-all duration-300">
-                <Media
-                   resource={company.logo}
-                   imgClassName="object-contain"
-                   fill
-                />
+              <div
+                key={company.id}
+                className="relative w-[180px] h-[60px] transition-all duration-300"
+              >
+                <Media resource={company.logo} imgClassName="object-contain" fill />
               </div>
             )
           })}

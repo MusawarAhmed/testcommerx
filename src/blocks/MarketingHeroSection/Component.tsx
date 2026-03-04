@@ -107,7 +107,7 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
         <div className="site-containers relative z-10 grid grid-cols-1 md:hidden gap-6 mb-12">
           {locations.map((location, index) => (
             <div
-              key={location.id || index}
+              key={`${location.id || 'location'}-${index}`}
               className="bg-white p-6 rounded-lg shadow-lg border border-gray-100"
             >
               <div className="flex items-center gap-3 mb-3">
@@ -117,7 +117,7 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
               {location.addressLines && location.addressLines.length > 0 && (
                 <div className="space-y-1 font-sans text-[14px] text-gray-600">
                   {location.addressLines.map((addrLine, i) => (
-                    <p key={i}>{addrLine.line}</p>
+                    <p key={`${addrLine.line}-${i}`}>{addrLine.line}</p>
                   ))}
                 </div>
               )}

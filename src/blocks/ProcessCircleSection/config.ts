@@ -12,6 +12,13 @@ export const ProcessCircleSection: Block = {
       defaultValue: 'How We Work',
     },
     {
+      name: 'centerImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Center Image/Logo',
+      required: false,
+    },
+    {
       name: 'steps',
       type: 'array',
       label: 'Quadrant Steps',

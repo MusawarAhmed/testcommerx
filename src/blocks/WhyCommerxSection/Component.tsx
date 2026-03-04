@@ -21,7 +21,7 @@ export const WhyCommerxSectionComponent: React.FC<WhyCommerxSectionBlock> = (pro
           <div className="flex flex-wrap justify-center gap-4">
             {items.map((item, index) => (
               <div
-                key={index}
+                key={`${item.id}-${index}`}
                 className="px-8 py-3.5 cursor-pointer border border-[#FFFFFF] rounded-full text-white text-[14px] md:text-[16px] font-semibold"
               >
                 {item.text}

@@ -16,7 +16,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
           <ul className="flex gap-4">
             {links.map(({ link }, i) => {
               return (
-                <li key={i}>
+                <li key={`${link.label || link.url || 'link'}-${i}`}>
                   <CMSLink {...link} />
                 </li>
               )

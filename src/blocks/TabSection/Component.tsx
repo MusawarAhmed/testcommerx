@@ -36,8 +36,20 @@ const ArrowIcon = ({ color = '#D02030', className = '' }) => (
     xmlns="http://www.w3.org/2000/svg"
     className={className}
   >
-    <path d="M1 6H11" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M6 1L11 6L6 11" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M1 6H11"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M6 1L11 6L6 11"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 )
 
@@ -67,7 +79,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
           <div className="flex flex-nowrap md:flex-row justify-between items-center min-w-max md:min-w-0">
             {tabs.map((tab, index) => (
               <button
-                key={tab.id || index}
+                key={`${tab.id || 'tab'}-${index}`}
                 onClick={() => setActiveTab(index)}
                 className={`px-4 md:px-6 py-3 text-[16px] md:text-[24px] font-bold rounded-[34px] transition-all duration-300 flex-1 text-center whitespace-nowrap cursor-pointer ${
                   activeTab === index
@@ -155,8 +167,14 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
 
       <style jsx>{`
         @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fade-in {
           animation: fade-in 0.5s ease-out forwards;

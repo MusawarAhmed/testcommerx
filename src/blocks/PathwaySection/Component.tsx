@@ -38,8 +38,11 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
 
           <div className="space-y-4 pt-2">
             {features && features.length > 0
-              ? features.map((featureItem, i) => (
-                  <div key={i} className="flex items-center gap-3">
+              ? features.map((featureItem, featureIndex) => (
+                  <div
+                    key={`${featureItem.id}-${featureIndex}`}
+                    className="flex items-center gap-3"
+                  >
                     <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#D02030] flex items-center justify-center">
                       <svg
                         width="10"
@@ -72,7 +75,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
             {steps && steps.length > 0
               ? steps.map((step, index) => (
                   <div
-                    key={index}
+                    key={`${step.id}-${index}`}
                     className={`relative flex items-start ${
                       step.align === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'
                     } gap-8 lg:gap-0`}

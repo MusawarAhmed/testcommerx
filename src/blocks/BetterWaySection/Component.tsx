@@ -26,7 +26,7 @@ export const BetterWaySectionComponent: React.FC<Props> = (props) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {items?.map((item, index) => (
             <div
-              key={item.id || index}
+              key={`${item.id}-${index}`}
               className="bg-white rounded-2xl p-8 md:p-10 flex flex-col h-full hover:shadow-lg transition-shadow duration-300 border border-gray-100"
             >
               <h3 className="text-[18px] md:text-[24px] font-bold font-sans text-black mb-4">

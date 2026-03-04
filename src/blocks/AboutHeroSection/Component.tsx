@@ -9,7 +9,7 @@ export const AboutHeroSectionComponent: React.FC<AboutHeroSectionBlock> = (props
     props
 
   return (
-    <section className="pt-32 pb-10 relative overflow-hidden bg-white min-h-[60vh] flex flex-col justify-center">
+    <section className="py-[150px] relative overflow-hidden bg-white min-h-[60vh] flex flex-col justify-center">
       {showBackgroundPatterns && (
         <>
           {/* Top Background Pattern */}

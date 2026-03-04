@@ -497,8 +497,8 @@ export interface Post {
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
-        id?: string | null;
         name?: string | null;
+        id?: string | null;
       }[]
     | null;
   /**
@@ -1140,6 +1140,7 @@ export interface MissionVisionSectionBlock {
  */
 export interface ProcessCircleSectionBlock {
   heading: string;
+  centerImage?: (number | null) | Media;
   steps?:
     | {
         title: string;
@@ -2003,6 +2004,7 @@ export interface MissionVisionSectionBlockSelect<T extends boolean = true> {
  */
 export interface ProcessCircleSectionBlockSelect<T extends boolean = true> {
   heading?: T;
+  centerImage?: T;
   steps?:
     | T
     | {
@@ -2081,8 +2083,8 @@ export interface PostsSelect<T extends boolean = true> {
   populatedAuthors?:
     | T
     | {
-        id?: T;
         name?: T;
+        id?: T;
       };
   generateSlug?: T;
   slug?: T;

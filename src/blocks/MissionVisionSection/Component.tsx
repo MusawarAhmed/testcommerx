@@ -6,7 +6,7 @@ export const MissionVisionSectionComponent: React.FC<MissionVisionSectionBlock> 
   const { heading, cards } = props
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-32 bg-white">
       <div className="site-containers">
         {heading && (
           <h2 className="text-center text-[32px] md:text-[48px] font-bold mb-16">
@@ -22,9 +22,9 @@ export const MissionVisionSectionComponent: React.FC<MissionVisionSectionBlock> 
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {cards?.map((card, index) => (
+          {cards?.map((card) => (
             <div
-              key={index}
+              key={card.id}
               className="bg-[#F3F6FD] rounded-2xl p-10 text-center flex flex-col items-center"
             >
               {card.icon && typeof card.icon !== 'string' && (

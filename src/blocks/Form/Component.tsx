@@ -130,12 +130,15 @@ export const FormBlock: React.FC<
               <div className="mb-4 last:mb-0">
                 {formFromProps &&
                   formFromProps.fields &&
-                  formFromProps.fields?.map((field, index) => {
+                  formFromProps.fields?.map((field) => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
                     if (Field) {
                       return (
-                        <div className="mb-6 last:mb-0" key={index}>
+                        <div
+                          className="mb-6 last:mb-0"
+                          key={field.id || field.name || `field-${field.blockType}`}
+                        >
                           <Field
                             form={formFromProps}
                             {...field}
