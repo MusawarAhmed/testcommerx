@@ -10,6 +10,7 @@ export default function Header() {
   const isLightPage =
     pathname === '/contact' ||
     pathname?.startsWith('/blog') ||
+    pathname?.startsWith('/services') ||
     pathname === '/privacy-policy' ||
     pathname === '/terms-of-service' ||
     pathname === '/marketing' ||
