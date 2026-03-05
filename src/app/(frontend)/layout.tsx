@@ -6,7 +6,6 @@ import { GeistSans } from 'geist/font/sans'
 import 'cal-sans'
 import React from 'react'
 
-
 import Header from './_components/common/Header'
 import Footer from './_components/common/Footer'
 import { Providers } from '@/providers'
@@ -16,6 +15,8 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+
+import { UserbackInit } from './_components/UserbackInit'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled: _isEnabled } = await draftMode()
@@ -29,12 +30,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <Providers>
-
-
+          <UserbackInit />
           <Header />
-          <main className="min-h-screen bg-white">
-            {children}
-          </main>
+          <main className="min-h-screen bg-white">{children}</main>
           <Footer />
         </Providers>
       </body>
