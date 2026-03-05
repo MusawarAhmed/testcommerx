@@ -100,7 +100,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                                      <MediaComponent
                                         resource={post.heroImage}
                                         fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                 )}
                             </div>

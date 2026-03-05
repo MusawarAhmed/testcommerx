@@ -1,9 +1,12 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getPayload } from 'payload';
+import configPromise from '@payload-config';
 import CTASection from '../../_components/common/CTASection';
 import ShareButtons from '../../_components/blog/ShareButtons';
-import { BLOG_POSTS } from '../../_lib/dummy-data';
+import RichText from '@/components/RichText';
+import { Media } from '@/components/Media';
+import type { Post } from '@/payload-types';
 
 // Force dynamic rendering to handle params correctly if needed, though for static export simpler
 export const dynamic = 'force-static';
@@ -11,36 +14,70 @@ export const dynamicParams = true;
 
 // Generate static params for all known blog posts (using slugs)
 export async function generateStaticParams() {
-    return BLOG_POSTS.map((post) => ({
+    const payload = await getPayload({ config: configPromise });
+    const posts = await payload.find({
+        collection: 'posts',
+        limit: 1000,
+        select: {
+            slug: true,
+        },
+    });
+
+    return posts.docs.map((post) => ({
         slug: post.slug,
     }));
 }
 
+const ArrowIcon = ({ color = "#D02030", className = "" }) => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M1 6H11" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M6 1L11 6L6 11" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+)
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const post = BLOG_POSTS.find((p) => p.slug === slug);
+    const payload = await getPayload({ config: configPromise });
+
+    const postsResult = await payload.find({
+        collection: 'posts',
+        where: {
+            slug: {
+                equals: slug,
+            },
+        },
+        limit: 1,
+    });
+
+    const post = postsResult.docs[0];
 
     if (!post) {
         notFound();
     }
 
-    // Get recommended posts (exclude current one, take 3)
-    const recommendedPosts = BLOG_POSTS
-        .filter(p => p.id !== post.id)
-        .slice(0, 3);
+    // Get recommended posts
+    let recommendedPosts: Post[] = [];
+    if (post.relatedPosts && post.relatedPosts.length > 0) {
+        recommendedPosts = post.relatedPosts.filter((p): p is Post => typeof p === 'object').slice(0, 3);
+    } else {
+        // Fallback: Get most recent posts excluding current one
+        const fallbackPosts = await payload.find({
+            collection: 'posts',
+            limit: 4,
+            where: {
+                id: {
+                    not_equals: post.id,
+                },
+            },
+            sort: '-publishedAt',
+        });
+        recommendedPosts = fallbackPosts.docs.slice(0, 3);
+    }
+
+    const authorName = post.populatedAuthors?.[0]?.name || 'Admin';
 
     return (
         <main className="min-h-screen bg-white relative overflow-hidden">
-            {/* Top Background Pattern */}
-            {/* <div className="absolute -top-25 -left-125 w-[800px] h-[900px] z-0 pointer-events-none">
-                <Image
-                    src="/home-insight-sec-bg.svg"
-                    alt="Background Pattern"
-                    fill
-                    className="object-contain object-top-left"
-                />
-            </div> */}
-
             <section className="site-containers pt-32 pb-12 relative z-10">
                 {/* Breadcrumb / Layout spacer */}
                 <div className="mb-8">
@@ -50,11 +87,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     </Link>
                 </div>
 
-                {/* Header Info - Removed Date/Author from here */}
+                {/* Header Info */}
                 <div className="mx-auto text-center mb-12">
-                    {/* <div className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-bold tracking-wider uppercase mb-6">
-                        {post.category}
-                    </div> */}
                     <h1 className="text-[32px] md:text-[56px] font-cal text-black leading-tight">
                         {post.title}
                     </h1>
@@ -65,49 +99,70 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                 {/* Featured Image */}
                 <div className="relative aspect-video w-full rounded-[4px] overflow-hidden shadow-lg">
-                    <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
+                    {post.heroImage && (
+                        <Media
+                            resource={post.heroImage}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    )}
                 </div>
             </section>
 
             {/* Content Section with Background Color */}
             <section className="py-10 md:py-16 relative z-10">
                 <div className="site-containers">
-                    <article className="mx-auto p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-gray-700 leading-relaxed text-[17px]
-                        [&_p]:mb-6 [&_h2]:text-[32px] [&_h2]:font-cal [&_h2]:text-black [&_h2]:mt-12 [&_h2]:mb-6
-                        [&_h3]:text-[24px] [&_h3]:font-cal [&_h3]:text-black [&_h3]:mt-10 [&_h3]:mb-4
-                        [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-2 [&_li]:marker:text-[#D02030]
-                        [&_quote]:block [&_quote]:border-l-4 [&_quote]:border-[#D02030] [&_quote]:pl-6 [&_quote]:italic [&_quote]:text-[20px] [&_quote]:font-medium [&_quote]:text-black/80 [&_quote]:my-10 [&_quote]:bg-white [&_quote]:p-6 [&_quote]:rounded-r-lg
+                    <article className="mx-auto p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-[#272727] leading-relaxed text-[17px]
+                        [&_p]:mb-8 [&_h2]:text-[32px] [&_h2]:font-cal [&_h2]:text-black [&_h2]:mt-12 [&_h2]:mb-8
+                        [&_h3]:text-[24px] [&_h3]:font-cal [&_h3]:text-black [&_h3]:mt-10 [&_h3]:mb-6
+                        [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-4 [&_li]:marker:text-[#D02030]
                     ">
                         {/* Intro / Description */}
-                        <p className="text-[20px] md:text-[24px] font-normal leading-relaxed text-black/90 mb-10">
-                            {post.description}
-                        </p>
+                        {post.meta?.description && (
+                            <div className="mb-10">
+                                <h1 className="text-[32px] md:text-[40px] font-cal text-black mb-6">Introduction</h1>
+                                <p className="text-[18px] md:text-[19px] font-normal leading-relaxed text-[#272727]">
+                                    {post.meta.description}
+                                </p>
+                            </div>
+                        )}
 
-                        <hr className="border-gray-200 mb-10" />
+                        <div className="mb-12">
+                             {post.heroImage && (
+                                <Media
+                                    resource={post.heroImage}
+                                    fill={false}
+                                    imgClassName="rounded-[4px] shadow-sm"
+                                />
+                             )}
+                        </div>
 
-                        {/* Main Content (rendering HTML string safely) */}
-                        <div dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+                        {/* Main Content */}
+                        <RichText 
+                            data={post.content} 
+                            enableGutter={false} 
+                            author={{
+                                name: authorName,
+                                // In a real app, populate this from user collection
+                                avatar: undefined 
+                            }}
+                        />
 
                         {/* Author & Share Footer */}
-                        <div className="mt-5 pt-8">
-                            <div className="flex flex-col gap-6 items-start">
+                        <div className="mt-16 pt-12 border-t border-gray-200">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between items-start gap-8">
                                 {/* Author Info */}
                                 <div>
-                                    <p className="text-sm font-sans text-black mb-0!">Author</p>
-                                    <p className="text-[32px] font-medium font-sans text-black m-0!">
-                                        {post.author}
-                                    </p>
+                                    <p className="text-sm font-sans text-black mb-1">Author</p>
+                                    <h2 className="text-[32px] font-medium font-sans text-black m-0 leading-tight">
+                                        {authorName}
+                                    </h2>
                                 </div>
 
                                 {/* Share Buttons */}
                                 <div>
-                                    <ShareButtons title={post.title} slug={post.slug} />
+                                    <ShareButtons title={post.title} slug={post.slug || ''} />
                                 </div>
                             </div>
                         </div>
@@ -116,37 +171,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </section>
 
             {/* Recommended Posts */}
-            <section className="bg-white py-10 md:py-20 relative z-10">
-                <div className="site-containers">
-                    <h2 className="text-3xl font-cal text-black mb-12 text-center">Recommended Posts</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {recommendedPosts.map((recPost) => (
-                            <Link href={`/blog/${recPost.slug}`} key={recPost.id} className="group cursor-pointer bg-[#F3F6FD] rounded-[8px] p-[24px] hover:shadow-md transition-all h-full flex flex-col">
-                                <div className="relative aspect-video w-full overflow-hidden rounded-[4px] mb-6">
-                                    <Image
-                                        src={recPost.image}
-                                        alt={recPost.title}
-                                        fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </div>
+            {recommendedPosts.length > 0 && (
+                <section className="bg-white py-10 md:py-20 relative z-10">
+                    <div className="site-containers">
+                        <h2 className="text-3xl font-cal text-black mb-12 text-center">Recommended Posts</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {recommendedPosts.map((recPost) => (
+                                <Link href={`/blog/${recPost.slug}`} key={recPost.id} className="group cursor-pointer bg-[#F3F6FD] rounded-[8px] p-[24px] hover:shadow-md transition-all h-full flex flex-col">
+                                    <div className="relative aspect-video w-full overflow-hidden rounded-[4px] mb-6">
+                                        {recPost.heroImage && (
+                                            <Media
+                                                resource={recPost.heroImage}
+                                                fill
+                                                imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        )}
+                                    </div>
 
-                                <h2 className="text-xl font-cal text-black mb-3 leading-tight group-hover:text-[#D02030] transition-colors line-clamp-2">
-                                    {recPost.title}
-                                </h2>
+                                    <h2 className="text-xl font-cal text-black mb-3 leading-tight group-hover:text-[#D02030] transition-colors line-clamp-2">
+                                        {recPost.title}
+                                    </h2>
 
-                                <p className="font-sans text-[14px] font-normal text-gray-600 mb-6 line-clamp-3">
-                                    {recPost.description}
-                                </p>
+                                    <p className="font-sans text-[14px] font-normal text-gray-600 mb-6 line-clamp-3">
+                                        {recPost.meta?.description || ''}
+                                    </p>
 
-                                <button className="mt-auto px-5 py-2 rounded-full border border-[#D02030] text-black text-[12px] cursor-pointer font-sans font-medium transition-all hover:bg-[#D02030] hover:text-white self-start">
-                                    Read Article
-                                </button>
-                            </Link>
-                        ))}
+                                    <div className="mt-auto inline-flex items-center gap-2 text-[#D02030] font-bold text-[16px] tracking-wide group-hover:gap-3 transition-all pt-2">
+                                        Read Article
+                                        <ArrowIcon color="#D02030" className="w-4 h-4" />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             <CTASection />
         </main>
