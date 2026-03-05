@@ -3,7 +3,6 @@ import React, { Fragment } from 'react'
 import type { Page, Service } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
@@ -30,7 +29,6 @@ import { ContactSectionComponent } from '@/blocks/ContactSection/Component'
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
-  cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   insightsSection: InsightsSectionComponent,

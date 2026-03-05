@@ -18,6 +18,12 @@ export const CTASectionBlock: Block = {
       defaultValue:
         'From marketing to infrastructure, our experts are ready to help you design the connected future of your business.',
     },
+    {
+      name: 'form',
+      type: 'relationship',
+      relationTo: 'forms',
+      label: 'Form',
+    },
   ],
   labels: {
     plural: 'CTA Sections',

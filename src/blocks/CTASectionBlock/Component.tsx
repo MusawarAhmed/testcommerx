@@ -2,9 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import type { CTASectionBlock } from '@/payload-types'
 import ContactForm from '@/app/(frontend)/_components/common/ContactForm'
+import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
+import { FormBlock } from '../Form/Component'
 
 export const CTASectionComponent: React.FC<CTASectionBlock> = (props) => {
-  const { heading, description } = props
+  const { heading, description, form } = props
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -30,7 +32,11 @@ export const CTASectionComponent: React.FC<CTASectionBlock> = (props) => {
         </div>
 
         <div className="max-w-4xl mx-auto bg-white rounded-[4px] shadow-2xl p-6 md:p-12">
-          <ContactForm />
+          {form && typeof form === 'object' ? (
+            <FormBlock form={form as unknown as FormType} enableIntro={false} />
+          ) : (
+            <ContactForm />
+          )}
         </div>
       </div>
     </section>
