@@ -113,33 +113,51 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Content Section with Background Color */}
             <section className="py-10 md:py-16 relative z-10">
                 <div className="site-containers">
-                    <article className="mx-auto p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-gray-700 leading-relaxed text-[17px]
-                        [&_p]:mb-6 [&_h2]:text-[32px] [&_h2]:font-cal [&_h2]:text-black [&_h2]:mt-12 [&_h2]:mb-6
-                        [&_h3]:text-[24px] [&_h3]:font-cal [&_h3]:text-black [&_h3]:mt-10 [&_h3]:mb-4
-                        [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-2 [&_li]:marker:text-[#D02030]
-                        [&_quote]:block [&_quote]:border-l-4 [&_quote]:border-[#D02030] [&_quote]:pl-6 [&_quote]:italic [&_quote]:text-[20px] [&_quote]:font-medium [&_quote]:text-black/80 [&_quote]:my-10 [&_quote]:bg-white [&_quote]:p-6 [&_quote]:rounded-r-lg
+                    <article className="mx-auto p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-[#272727] leading-relaxed text-[17px]
+                        [&_p]:mb-8 [&_h2]:text-[32px] [&_h2]:font-cal [&_h2]:text-black [&_h2]:mt-12 [&_h2]:mb-8
+                        [&_h3]:text-[24px] [&_h3]:font-cal [&_h3]:text-black [&_h3]:mt-10 [&_h3]:mb-6
+                        [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-4 [&_li]:marker:text-[#D02030]
                     ">
                         {/* Intro / Description */}
                         {post.meta?.description && (
-                            <p className="text-[20px] md:text-[24px] font-normal leading-relaxed text-black/90 mb-10">
-                                {post.meta.description}
-                            </p>
+                            <div className="mb-10">
+                                <h1 className="text-[32px] md:text-[40px] font-cal text-black mb-6">Introduction</h1>
+                                <p className="text-[18px] md:text-[19px] font-normal leading-relaxed text-[#272727]">
+                                    {post.meta.description}
+                                </p>
+                            </div>
                         )}
 
-                        <hr className="border-gray-200 mb-10" />
+                        <div className="mb-12">
+                             {post.heroImage && (
+                                <Media
+                                    resource={post.heroImage}
+                                    fill={false}
+                                    imgClassName="rounded-[4px] shadow-sm"
+                                />
+                             )}
+                        </div>
 
                         {/* Main Content */}
-                        <RichText data={post.content} enableGutter={false} />
+                        <RichText 
+                            data={post.content} 
+                            enableGutter={false} 
+                            author={{
+                                name: authorName,
+                                // In a real app, populate this from user collection
+                                avatar: undefined 
+                            }}
+                        />
 
                         {/* Author & Share Footer */}
-                        <div className="mt-5 pt-8">
-                            <div className="flex flex-col gap-6 items-start">
+                        <div className="mt-16 pt-12 border-t border-gray-200">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between items-start gap-8">
                                 {/* Author Info */}
                                 <div>
-                                    <p className="text-sm font-sans text-black mb-0!">Author</p>
-                                    <p className="text-[32px] font-medium font-sans text-black m-0!">
+                                    <p className="text-sm font-sans text-black mb-1">Author</p>
+                                    <h2 className="text-[32px] font-medium font-sans text-black m-0 leading-tight">
                                         {authorName}
-                                    </p>
+                                    </h2>
                                 </div>
 
                                 {/* Share Buttons */}
@@ -165,7 +183,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                             <Media
                                                 resource={recPost.heroImage}
                                                 fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
                                             />
                                         )}
                                     </div>
