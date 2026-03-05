@@ -3,7 +3,6 @@ import type { WhyCommerxSectionBlock } from '@/payload-types'
 
 export const WhyCommerxSectionComponent: React.FC<WhyCommerxSectionBlock> = (props) => {
   const { heading, description, items } = props
-  console.log('items', items)
   return (
     <section className="bg-black px-[120px] overflow-hidden relative py-[144px]">
       <div className="site-containers mx-auto text-center relative z-10">

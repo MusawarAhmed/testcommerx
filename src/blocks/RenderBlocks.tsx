@@ -60,14 +60,12 @@ export const RenderBlocks: React.FC<{
   const { blocks } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
-  console.log('blocks in RenderBlocks:', blocks)
+
   if (hasBlocks) {
     return (
       <Fragment>
         {blocks.map((block, index) => {
           const { blockType } = block
-
-          console.log(`Block ${index}:`, { blockType, block })
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType as keyof typeof blockComponents]
