@@ -936,8 +936,6 @@ export interface WhatWeDoSectionBlock {
  */
 export interface BetterWaySectionBlock {
   heading: string;
-  backgroundImage?: (number | null) | Media;
-  showBackgroundPatterns?: boolean | null;
   items?: BetterWayItem;
   id?: string | null;
   blockName?: string | null;
@@ -1765,8 +1763,6 @@ export interface WhatWeDoItemSelect<T extends boolean = true> {
  */
 export interface BetterWaySectionBlockSelect<T extends boolean = true> {
   heading?: T;
-  backgroundImage?: T;
-  showBackgroundPatterns?: T;
   items?: T | BetterWayItemSelect<T>;
   id?: T;
   blockName?: T;

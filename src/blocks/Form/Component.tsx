@@ -10,6 +10,7 @@ import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { cn } from '@/utilities/ui'
 
 export type FormBlockType = {
   blockName?: string
@@ -17,6 +18,21 @@ export type FormBlockType = {
   enableIntro: boolean
   form: FormType
   introContent?: DefaultTypedEditorState
+}
+
+export const Width: React.FC<{
+  children: React.ReactNode
+  className?: string
+  width?: number | string
+}> = ({ children, className, width }) => {
+  return (
+    <div
+      className={cn('w-full px-4 mb-8', className)}
+      style={{ width: width ? `${width}%` : '100%' }}
+    >
+      {children}
+    </div>
+  )
 }
 
 export const FormBlock: React.FC<
@@ -114,46 +130,53 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem]">
+    <div className="w-full">
       {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
       )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
+      <div className="">
         <FormProvider {...formMethods}>
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText data={confirmationMessage} />
           )}
           {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-          {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+          {error && (
+            <div className="text-red-500 mb-4">{`${error.status || '500'}: ${error.message || ''}`}</div>
+          )}
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
+              <div className="flex flex-wrap -mx-4">
                 {formFromProps &&
                   formFromProps.fields &&
-                  formFromProps.fields?.map((field) => {
+                  formFromProps.fields?.map((field, index) => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
                     if (Field) {
                       return (
-                        <div className="mb-6 last:mb-0" key={`field-${field.blockType}`}>
-                          <Field
-                            form={formFromProps}
-                            {...field}
-                            {...formMethods}
-                            control={control}
-                            errors={errors}
-                            register={register}
-                          />
-                        </div>
+                        <Field
+                          key={index}
+                          form={formFromProps}
+                          {...field}
+                          {...formMethods}
+                          control={control}
+                          errors={errors}
+                          register={register}
+                        />
                       )
                     }
                     return null
                   })}
               </div>
 
-              <Button form={formID} type="submit" variant="default">
-                {submitButtonLabel}
-              </Button>
+              <div className="pt-8">
+                <button
+                  form={formID}
+                  type="submit"
+                  className="bg-[#D02030] text-white px-10 py-3 rounded-full font-cal text-[14px] cursor-pointer hover:bg-[#B01A28] transition-all transform hover:scale-105"
+                >
+                  {submitButtonLabel}
+                </button>
+              </div>
             </form>
           )}
         </FormProvider>

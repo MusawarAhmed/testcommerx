@@ -1,8 +1,6 @@
 import type { EmailField } from '@payloadcms/plugin-form-builder/types'
 import type { FieldErrorsImpl, FieldValues, UseFormRegister } from 'react-hook-form'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import React from 'react'
 
 import { Error } from '../Error'
@@ -16,20 +14,16 @@ export const Email: React.FC<
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
   return (
     <Width width={width}>
-      <Label htmlFor={name}>
+      <label htmlFor={name} className="text-[16px] font-sans text-[#8F8F8F] block mb-2">
         {label}
-
-        {required && (
-          <span className="required">
-            * <span className="sr-only">(required)</span>
-          </span>
-        )}
-      </Label>
-      <Input
+        {required && '*'}
+      </label>
+      <input
         defaultValue={defaultValue}
         id={name}
-        type="text"
+        type="email"
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
+        className="w-full border-b border-gray-300 py-2 focus:border-[#D02030] outline-none transition-colors text-black bg-transparent"
       />
 
       {errors[name] && <Error name={name} />}
