@@ -33,7 +33,7 @@ export default function Header() {
               priority
             />
           </Link>
-          {showMenu && (
+          {/* {showMenu && (
             <div className="hidden md:flex items-center space-x-8 text-black/90 font-medium">
               <Link href="/services" className="hover:text-[#D02030] transition-colors">
                 Services
@@ -48,7 +48,7 @@ export default function Header() {
                 About
               </Link>
             </div>
-          )}
+          )} */}
         </div>
         <Link
           href="/contact"
