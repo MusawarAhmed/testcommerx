@@ -81,9 +81,9 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
 
       {/* Hero Section */}
       <section className="site-containers pt-40 pb-16 text-center relative z-10">
-        {/* <div className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-bold tracking-wider uppercase mb-6">
-                    Blog
-                </div> */}
+        <div className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-bold tracking-wider uppercase mb-6">
+          Blog
+        </div>
 
         <h1 className="text-[48px] md:text-[64px] font-bold text-black leading-tight mb-6 max-w-4xl mx-auto">
           Explore our blog for expert knowledge and inspiration
@@ -134,13 +134,12 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                 {post.title}
               </h2>
 
-              <p className="text-[14px] font-normal text-gray-600 mb-6 line-clamp-3">
+              <p className="text-[14px] font-normal text-black mb-6 line-clamp-3">
                 {post.meta?.description || ''}
               </p>
 
-              <div className="inline-flex items-center gap-2 text-[#D02030] font-bold text-[16px] tracking-wide group-hover:gap-3 transition-all pt-2">
+              <div className="inline-flex items-center gap-2 border border-[#D02030] text-[#000000] font-normal text-[12px] tracking-wide group-hover:gap-3 transition-all px-4 py-2 rounded-full font-cal">
                 Read Article
-                <ArrowIcon color="#D02030" className="w-4 h-4" />
               </div>
             </Link>
           ))}

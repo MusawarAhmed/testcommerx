@@ -2625,6 +2625,19 @@ export interface CodeBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteBlock".
+ */
+export interface QuoteBlock {
+  quote: string;
+  authorFirstName: string;
+  authorLastName: string;
+  authorPicture?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quoteBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

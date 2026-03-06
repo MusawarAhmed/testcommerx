@@ -28,38 +28,13 @@ export async function generateStaticParams() {
   }))
 }
 
-const ArrowIcon = ({ color = '#D02030', className = '' }) => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 12 12"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path
-      d="M1 6H11"
-      stroke={color}
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M6 1L11 6L6 11"
-      stroke={color}
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const payload = await getPayload({ config: configPromise })
 
   const postsResult = await payload.find({
     collection: 'posts',
+    depth: 2,
     where: {
       slug: {
         equals: slug,
@@ -139,7 +114,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <section className="py-10 md:py-16 relative z-10">
         <div className="site-containers">
           <article
-            className="mx-auto p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-black leading-relaxed text-[17px]
+            className="mx-auto rounded-[8px] p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-black leading-relaxed text-[14px]
                         [&_p]:mb-8 [&_p]:text-black prose-p:text-black prose-headings:text-black
                         [&_h2]:text-[32px] [&_h2]:font-cal [&_h2]:text-black [&_h2]:mt-12 [&_h2]:mb-8
                         [&_h3]:text-[24px] [&_h3]:font-cal [&_h3]:text-black [&_h3]:mt-10 [&_h3]:mb-6
@@ -172,11 +147,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Author & Share Footer */}
             <div className="mt-16 pt-12 border-t border-gray-200">
-              <div className="flex flex-col md:flex-row md:items-end justify-between items-start gap-8">
+              <div className="flex flex-col justify-between items-start gap-8">
                 {/* Author Info */}
-                <div>
-                  <p className="text-sm font-sans text-black mb-1">Author</p>
-                  <h2 className="text-[32px] font-medium font-sans text-black m-0 leading-tight">
+                <div className="flex flex-col gap-2">
+                  <p className="text-sm font-sans text-black !m-0">Author</p>
+                  <h2 className="text-[32px] font-medium font-sans text-black !m-0">
                     {authorName}
                   </h2>
                 </div>
@@ -197,36 +172,40 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="site-containers">
             <h2 className="text-3xl font-cal text-black mb-12 text-center">Recommended Posts</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {recommendedPosts.map((recPost) => (
-                <Link
-                  href={`/blog/${recPost.slug}`}
-                  key={recPost.id}
-                  className="group cursor-pointer bg-[#F3F6FD] rounded-[8px] p-[24px] hover:shadow-md transition-all h-full flex flex-col"
-                >
-                  <div className="relative aspect-video w-full overflow-hidden rounded-[4px] mb-6">
-                    {recPost.heroImage && (
-                      <Media
-                        resource={recPost.heroImage}
-                        fill
-                        imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    )}
-                  </div>
+              {recommendedPosts.map(
+                (recPost) => (
+                  console.log('recpost', recPost),
+                  (
+                    <Link
+                      href={`/blog/${recPost.slug}`}
+                      key={recPost.id}
+                      className="group cursor-pointer bg-[#F3F6FD] rounded-[8px] p-[24px] hover:shadow-md transition-all h-full flex flex-col"
+                    >
+                      <div className="relative aspect-video w-full overflow-hidden rounded-[4px] mb-6">
+                        {recPost.heroImage && (
+                          <Media
+                            resource={recPost.heroImage}
+                            fill
+                            imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        )}
+                      </div>
 
-                  <h2 className="text-xl font-cal text-black mb-3 leading-tight group-hover:text-[#D02030] transition-colors line-clamp-2">
-                    {recPost.title}
-                  </h2>
+                      <h2 className="text-xl font-cal text-black mb-3 leading-tight group-hover:text-[#D02030] transition-colors line-clamp-2">
+                        {recPost.title}
+                      </h2>
 
-                  <p className="font-sans text-[14px] font-normal text-gray-600 mb-6 line-clamp-3">
-                    {recPost.meta?.description || ''}
-                  </p>
+                      <p className="font-sans text-[14px] font-normal text-black mb-6 line-clamp-3">
+                        {recPost.meta?.description || ''}
+                      </p>
 
-                  <div className="mt-auto inline-flex items-center gap-2 text-[#D02030] font-bold text-[16px] tracking-wide group-hover:gap-3 transition-all pt-2">
-                    Read Article
-                    <ArrowIcon color="#D02030" className="w-4 h-4" />
-                  </div>
-                </Link>
-              ))}
+                      <div className="w-[100px] border border-[#D02030] text-[#000000] font-normal text-[12px] px-4 py-2 rounded-full font-cal">
+                        Read Article
+                      </div>
+                    </Link>
+                  )
+                ),
+              )}
             </div>
           </div>
         </section>
