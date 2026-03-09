@@ -6,7 +6,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
   const { title, description, features, steps } = props
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
+    <section className="py-35 bg-white relative overflow-hidden">
       {/* Background Pattern - Faint red lines */}
       <div className="absolute top-0 right-0 w-[600px] h-[800px] pointer-events-none opacity-50 translate-x-1/3 -translate-y-1/4">
         <Image

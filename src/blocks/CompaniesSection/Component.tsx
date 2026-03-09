@@ -6,7 +6,7 @@ export const CompaniesSectionComponent: React.FC<CompaniesSectionBlock> = (props
   const { title, companies } = props
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-35 bg-white">
       <div className="site-containers">
         {title && (
           <h2 className="text-center text-[28px] md:text-[48px] font-cal mb-16">

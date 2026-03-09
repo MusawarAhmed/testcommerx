@@ -59,7 +59,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
   if (tabs.length === 0) return null
 
   return (
-    <section className="py-20 bg-[#F3F6FD]">
+    <section className="py-35 bg-[#F3F6FD]">
       <div className="container flex flex-col gap-14">
         {/* Header */}
         <div className="text-center space-y-4">

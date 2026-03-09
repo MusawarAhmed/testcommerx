@@ -21,7 +21,7 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
     props
 
   return (
-    <section className="pt-32 pb-10 relative">
+    <section className="py-[150px] relative">
       {showBackgroundPatterns && (
         <>
           {/* Top Background Pattern */}
@@ -74,7 +74,7 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
 
       {/* Hero Image / Map Section - Matches Static Sizing Exactly */}
       {heroImage && (
-        <div className="site-containers relative w-full h-[300px] md:h-[600px] mb-20 z-10 px-[120px]">
+        <div className="site-containers relative w-full h-[300px] md:h-[600px] z-10 px-[120px]">
           <div className="relative w-full h-full z-0 rounded-[8px] overflow-hidden">
             <Media resource={heroImage} fill imgClassName="object-cover rounded-[8px]" priority />
           </div>

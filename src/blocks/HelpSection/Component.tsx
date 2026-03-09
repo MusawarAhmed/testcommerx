@@ -5,7 +5,7 @@ export const HelpSectionComponent: React.FC<HelpSectionBlock> = (props) => {
   const { heading, items } = props
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-30 bg-white">
       <div className="site-containers">
         <div className="text-center mb-16">
           <h2 className="text-[32px] md:text-[48px] font-cal text-[#D02030] leading-tight">

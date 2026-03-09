@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="min-h-screen bg-white relative overflow-hidden">
-      <section className="site-containers pt-32 pb-12 relative z-10">
+      <section className="site-containers py-35 relative z-10">
         {/* Breadcrumb / Layout spacer */}
         <div className="mb-8">
           <Link
@@ -111,7 +111,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Content Section with Background Color */}
-      <section className="py-10 md:py-16 relative z-10">
+      <section className="py-10 md:pb-35 relative z-10">
         <div className="site-containers">
           <article
             className="mx-auto rounded-[8px] p-[20px] md:p-[80px] bg-[#F3F6FD] font-sans text-black leading-relaxed text-[14px]
@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Recommended Posts */}
       {recommendedPosts.length > 0 && (
-        <section className="bg-white py-10 md:py-20 relative z-10">
+        <section className="bg-white py-10 md:py-35 relative z-10">
           <div className="site-containers">
             <h2 className="text-3xl font-cal text-black mb-12 text-center">Recommended Posts</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

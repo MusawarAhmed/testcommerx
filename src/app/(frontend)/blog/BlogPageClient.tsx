@@ -54,7 +54,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       </div>
 
       {/* Hero Section */}
-      <section className="site-containers pt-40 pb-16 text-center relative z-10">
+      <section className="site-containers pt-30 pb-12 text-center relative z-10">
         <div className="inline-block px-4 py-1.5 rounded-full bg-[#FFEAEB] text-[#D02030] text-[12px] font-bold tracking-wider uppercase mb-6">
           Blog
         </div>
@@ -86,7 +86,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       </section>
 
       {/* Blog Grid */}
-      <section className="site-containers pb-32 relative z-10">
+      <section className="site-containers pb-35 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
           {filteredPosts.map((post) => (
             <Link

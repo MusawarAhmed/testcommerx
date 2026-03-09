@@ -6,7 +6,7 @@ export const MissionVisionSectionComponent: React.FC<MissionVisionSectionBlock> 
   const { heading, cards } = props
 
   return (
-    <section className="py-32 bg-white">
+    <section className="py-35 bg-white">
       <div className="site-containers">
         {heading && (
           <h2 className="text-center text-[32px] md:text-[48px] font-bold mb-16">
