@@ -23,8 +23,8 @@ export const StorySectionComponent: React.FC<StorySectionBlock> = (props) => {
         </>
       )}
       <div className="site-containers relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-7">
+        <div className="grid grid-cols-1 md:grid-cols-13 gap-12 items-center">
+          <div className="md:col-span-6">
             {heading && (
               <h2 className="text-[32px] md:text-[48px] font-cal text-black mb-6">{heading}</h2>
             )}
@@ -32,7 +32,7 @@ export const StorySectionComponent: React.FC<StorySectionBlock> = (props) => {
               {content && <RichText data={content} enableGutter={false} enableProse={false} />}
             </div>
           </div>
-          <div className="md:col-span-5">
+          <div className="md:col-span-7">
             {image && typeof image !== 'string' && (
               <div className="relative w-[585px] h-[440px] rounded-lg overflow-hidden shadow-lg">
                 <Media resource={image} imgClassName="object-cover w-full h-full" fill />
