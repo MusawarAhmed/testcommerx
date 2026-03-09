@@ -121,17 +121,15 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
             {/* Content Split: Image & Text Area */}
             <div className="flex flex-col lg:flex-row gap-8 items-stretch pt-4">
               {/* Image Part */}
-              <div className="w-full lg:w-1/2">
-                <div className="relative aspect-4/3 w-full bg-[#F3F6FD] p-4 rounded-[8px] overflow-hidden h-full min-h-[300px]">
-                  <div className="relative w-full h-full">
-                    {currentTab.image && (
-                      <Media
-                        resource={currentTab.image}
-                        fill
-                        className="object-cover rounded-[4px] transition-opacity duration-500"
-                      />
-                    )}
-                  </div>
+              <div className="w-full lg:w-1/2 bg-[#F3F6FD] p-4 rounded-[8px]">
+                <div className="relative w-full overflow-hidden h-full min-h-[300px]">
+                  {currentTab.image && (
+                    <Media
+                      resource={currentTab.image}
+                      fill
+                      className="object-cover transition-opacity duration-500"
+                    />
+                  )}
                 </div>
               </div>
 
