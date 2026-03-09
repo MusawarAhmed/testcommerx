@@ -57,12 +57,12 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
       }
     }
   }
-
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative -mt-10 h-screen w-full overflow-hidden bg-black">
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="fade"
+        fadeEffect={{ crossFade: true }}
         autoplay={{
           delay: 5000,
           disableOnInteraction: true,
@@ -82,7 +82,7 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
                     <Media
                       resource={slide.image}
                       fill
-                      className={`object-cover transition-transform duration-6000 ease-linear ${
+                      imgClassName={`object-cover transition-transform duration-6000 ease-linear ${
                         activeIndex === index ? 'scale-110' : 'scale-100'
                       }`}
                       priority={index === 0}
@@ -94,17 +94,21 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
                 <div className="relative z-10 h-full flex items-center">
                   <div className="container">
                     <div className="max-w-4xl text-white">
-                      <span className="inline-block text-[18px] md:text-[24px] font-normal mb-6 text-white animate-fade-in-up">
+                      <span
+                        className={`inline-block text-[18px] md:text-[24px] font-normal mb-6 text-white ${activeIndex === index ? 'animate-fade-in-up' : 'opacity-0'}`}
+                      >
                         {slide.subtitle}
                       </span>
-                      <h1 className="text-[32px] md:text-[48px] font-normal mb-10 leading-[1.1] md:leading-[1.2] animate-fade-in-up delay-100">
+                      <h1
+                        className={`text-[32px] md:text-[48px] font-normal mb-10 leading-[1.1] md:leading-[1.2] ${activeIndex === index ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}
+                      >
                         {slide.title}
                       </h1>
 
                       {slide.link && (
                         <Link
                           href={slide.link}
-                          className="inline-flex items-center gap-2 text-[16px] border-b border-white/30 pb-1 hover:border-white transition-all group animate-fade-in-up delay-200"
+                          className={`inline-flex items-center gap-2 text-[16px] border-b border-white/30 pb-1 hover:border-white transition-all group ${activeIndex === index ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}
                         >
                           Explore Our Solutions
                           <ArrowIcon
