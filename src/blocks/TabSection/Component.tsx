@@ -58,8 +58,6 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
 
   if (tabs.length === 0) return null
 
-  const currentTab = tabs[activeTab]
-
   return (
     <section className="py-20 bg-[#F3F6FD]">
       <div className="container flex flex-col gap-14">
@@ -93,74 +91,83 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
           </div>
         </div>
 
-        {/* Tab Content Card */}
-        <div className="bg-white rounded-[16px] p-6 md:p-12 border border-black/5 animate-fade-in">
-          <div className="space-y-12">
-            {/* Content Title & Tags */}
-            <div className="space-y-6">
-              {currentTab.contentTitle && (
-                <h3 className="text-[32px] md:text-[56px] font-bold text-black">
-                  {currentTab.contentTitle}
-                </h3>
-              )}
-
-              {currentTab.tags && currentTab.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 text-[14px] md:text-[16px] font-medium">
-                  {currentTab.tags.map((tag, i) => (
-                    <span
-                      key={tag.id || i}
-                      className="px-4 py-1.5 rounded-full border border-[#D02030] text-black hover:border-[#D02030] transition-colors"
-                    >
-                      {tag.text}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Content Split: Image & Text Area */}
-            <div className="flex flex-col lg:flex-row gap-8 items-stretch pt-4">
-              {/* Image Part */}
-              <div className="w-full lg:w-1/2 bg-[#F3F6FD] p-4 rounded-[8px]">
-                <div className="relative w-full overflow-hidden h-full min-h-[300px]">
-                  {currentTab.image && (
-                    <Media
-                      resource={currentTab.image}
-                      fill
-                      className="object-cover transition-opacity duration-500"
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Content Part with #F3F6FD background */}
-              <div className="w-full lg:w-1/2 bg-[#F3F6FD] rounded-[8px] p-4 md:p-6 flex flex-col justify-between">
+        {/* Tab Content Cards — all pre-rendered, toggled via opacity for instant switching */}
+        {tabs.map((tab, index) => {
+          const isActive = activeTab === index
+          return (
+            <div
+              key={`${tab.id || 'content'}-${index}`}
+              className="bg-white rounded-[16px] p-6 md:p-12 border border-black/5 transition-opacity duration-300"
+              style={{
+                opacity: isActive ? 1 : 0,
+                position: isActive ? 'relative' : 'absolute',
+                pointerEvents: isActive ? 'auto' : 'none',
+                inset: isActive ? 'auto' : 0,
+                visibility: isActive ? 'visible' : 'hidden',
+              }}
+            >
+              <div className="space-y-12">
+                {/* Content Title & Tags */}
                 <div className="space-y-6">
-                  {currentTab.innerTitle && (
-                    <h4 className="text-[20px] md:text-[24px] font-bold text-black leading-snug">
-                      {currentTab.innerTitle}
-                    </h4>
+                  {tab.contentTitle && (
+                    <h3 className="text-[32px] md:text-[56px] font-bold text-black">
+                      {tab.contentTitle}
+                    </h3>
                   )}
-                  {currentTab.innerDescription && (
-                    <p className="text-[16px] text-[#000000] leading-relaxed">
-                      {currentTab.innerDescription}
-                    </p>
+
+                  {tab.tags && tab.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 text-[14px] md:text-[16px] font-medium">
+                      {tab.tags.map((tag, i) => (
+                        <span
+                          key={tag.id || i}
+                          className="px-4 py-1.5 rounded-full border border-[#D02030] text-black hover:border-[#D02030] transition-colors"
+                        >
+                          {tag.text}
+                        </span>
+                      ))}
+                    </div>
                   )}
                 </div>
 
-                {currentTab.linkUrl && (
-                  <Link
-                    href={currentTab.linkUrl}
-                    className="inline-flex items-center gap-2 text-[#D02030] font-bold text-[16px] tracking-wide hover:gap-3 transition-all pt-8"
-                  >
-                    {currentTab.linkText || 'Learn More'}
-                    <ArrowIcon color="#D02030" className="w-4 h-4" />
-                  </Link>
-                )}
+                {/* Content Split: Image & Text Area */}
+                <div className="flex flex-col lg:flex-row gap-8 items-stretch pt-4">
+                  {/* Image Part — pre-rendered so it's already in memory */}
+                  <div className="w-full lg:w-1/2 bg-[#F3F6FD] p-4 rounded-[8px]">
+                    <div className="relative w-full overflow-hidden h-full min-h-[300px]">
+                      {tab.image && <Media resource={tab.image} fill className="object-cover" />}
+                    </div>
+                  </div>
+
+                  {/* Content Part */}
+                  <div className="w-full lg:w-1/2 bg-[#F3F6FD] rounded-[8px] p-4 md:p-6 flex flex-col justify-between">
+                    <div className="space-y-6">
+                      {tab.innerTitle && (
+                        <h4 className="text-[20px] md:text-[24px] font-bold text-black leading-snug">
+                          {tab.innerTitle}
+                        </h4>
+                      )}
+                      {tab.innerDescription && (
+                        <p className="text-[16px] text-[#000000] leading-relaxed">
+                          {tab.innerDescription}
+                        </p>
+                      )}
+                    </div>
+
+                    {tab.linkUrl && (
+                      <Link
+                        href={tab.linkUrl}
+                        className="inline-flex items-center gap-2 text-[#D02030] font-bold text-[16px] tracking-wide hover:gap-3 transition-all pt-8"
+                      >
+                        {tab.linkText || 'Learn More'}
+                        <ArrowIcon color="#D02030" className="w-4 h-4" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          )
+        })}
       </div>
 
       <style jsx>{`
