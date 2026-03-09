@@ -181,10 +181,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       key={recPost.id}
                       className="group cursor-pointer bg-[#F3F6FD] rounded-[8px] p-[24px] hover:shadow-md transition-all h-full flex flex-col"
                     >
-                      <div className="relative aspect-video w-full overflow-hidden rounded-[4px] mb-6">
-                        {recPost.heroImage && (
+                      <div className="relative aspect-video w-full overflow-hidden rounded-[8px] mb-6">
+                        {recPost.meta?.image && typeof recPost.meta.image === 'object' && (
                           <Media
-                            resource={recPost.heroImage}
+                            resource={recPost.meta.image}
                             fill
                             imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
                           />

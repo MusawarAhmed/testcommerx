@@ -12,32 +12,6 @@ interface BlogPageClientProps {
   categories: Category[]
 }
 
-const ArrowIcon = ({ color = '#D02030', className = '' }) => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 12 12"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path
-      d="M1 6H11"
-      stroke={color}
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M6 1L11 6L6 11"
-      stroke={color}
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
 export default function BlogPageClient({ posts, categories }: BlogPageClientProps) {
   const [activeCategory, setActiveCategory] = useState('All')
 
@@ -120,7 +94,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               key={post.id}
               className="block group cursor-pointer bg-[#F3F6FD] rounded-[8px] p-[24px]"
             >
-              <div className="relative aspect-video w-full overflow-hidden rounded-[4px] mb-6">
+              <div className="relative aspect-video w-full overflow-hidden rounded-[8px] mb-6">
                 {post.heroImage && (
                   <MediaComponent
                     resource={post.heroImage}

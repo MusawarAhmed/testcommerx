@@ -167,7 +167,7 @@ export default function TabSection({ data, legacyCapabilities }: TabSectionProps
                             src={imgUrl}
                             alt={currentTab.mainTitle || 'Capability Image'}
                             fill
-                            className="object-cover rounded-[4px] transition-opacity duration-500"
+                            className="object-cover rounded-[8px] transition-opacity duration-500"
                             unoptimized
                           />
                         )
