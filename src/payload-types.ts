@@ -1810,7 +1810,7 @@ export interface MarketingHeroSectionBlockSelect<T extends boolean = true> {
   description?: T;
   buttonText?: T;
   buttonLink?: T;
-  image?: T;
+  heroImage?: T;
   showBackgroundPatterns?: T;
   id?: T;
   blockName?: T;

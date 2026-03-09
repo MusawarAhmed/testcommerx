@@ -20,8 +20,20 @@ const ArrowIcon = ({ color = '#000', className = '' }) => (
     xmlns="http://www.w3.org/2000/svg"
     className={className}
   >
-    <path d="M1 6H11" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M6 1L11 6L6 11" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M1 6H11"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M6 1L11 6L6 11"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 )
 
@@ -70,8 +82,9 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
                     <Media
                       resource={slide.image}
                       fill
-                      className={`object-cover transition-transform duration-6000 ease-linear ${activeIndex === index ? 'scale-110' : 'scale-100'
-                        }`}
+                      className={`object-cover transition-transform duration-6000 ease-linear ${
+                        activeIndex === index ? 'scale-110' : 'scale-100'
+                      }`}
                       priority={index === 0}
                     />
                   )}
@@ -94,7 +107,10 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
                           className="inline-flex items-center gap-2 text-[16px] border-b border-white/30 pb-1 hover:border-white transition-all group animate-fade-in-up delay-200"
                         >
                           Explore Our Solutions
-                          <ArrowIcon color="#ffffff" className="group-hover:translate-x-1 transition-transform" />
+                          <ArrowIcon
+                            color="#ffffff"
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
                         </Link>
                       )}
                     </div>
@@ -114,15 +130,20 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
               <button
                 key={slide.id || index}
                 onClick={() => handleTabClick(index)}
-                className="relative text-left pb-4 transition-all group flex-none md:flex-1 cursor-pointer"
+                className="relative pb-4 transition-all group flex-none cursor-pointer"
               >
                 <div className="inline-block relative whitespace-nowrap">
-                  <span className={`text-[16px] md:text-[24px] font-normal transition-colors ${activeIndex === index ? 'text-white' : 'text-white group-hover:text-white/70'
-                    }`}>
+                  <span
+                    className={`text-[16px] md:text-[24px] font-normal transition-colors ${
+                      activeIndex === index ? 'text-white' : 'text-white group-hover:text-white/70'
+                    }`}
+                  >
                     {slide.tabLabel}
                   </span>
                   {activeIndex === index && (
-                    <div className={`absolute -bottom-[17px] md:-bottom-[17px] left-0 h-1 bg-[#D32F2F] ${isAutoplayPaused ? 'animate-width-expand-fast' : 'animate-width-expand-slow'}`} />
+                    <div
+                      className={`absolute -bottom-[17px] md:-bottom-[17px] left-0 h-1 bg-[#D32F2F] ${isAutoplayPaused ? 'animate-width-expand-fast' : 'animate-width-expand-slow'}`}
+                    />
                   )}
                 </div>
               </button>
@@ -133,18 +154,32 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
 
       <style jsx global>{`
         @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
         }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        
+        .delay-100 {
+          animation-delay: 0.1s;
+        }
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
+
         @keyframes width-expand {
-          from { width: 0; }
-          to { width: 100%; }
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
         }
         .animate-width-expand-slow {
           animation: width-expand 5s linear forwards;
