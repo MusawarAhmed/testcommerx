@@ -73,7 +73,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
         </div>
 
         {/* Tabs Navigation */}
-        <div className="bg-white rounded-[8px] py-2 px-3 w-full overflow-x-auto">
+        <div className="bg-white rounded-[8px] py-5 px-3 w-full overflow-x-auto">
           <div className="flex flex-nowrap md:flex-row justify-between items-center min-w-max md:min-w-0">
             {tabs.map((tab, index) => (
               <button
