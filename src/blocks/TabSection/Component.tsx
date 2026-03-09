@@ -65,7 +65,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
       <div className="container flex flex-col gap-14">
         {/* Header */}
         <div className="text-center space-y-4">
-          <h2 className="text-[28px] md:text-[48px] font-bold leading-tight text-black">
+          <h2 className="text-[28px] md:text-[48px] font-normal font-cal leading-tight text-black">
             {title || 'Integrated Capabilities. One Strategic Partner.'}
           </h2>
           <p className="max-w-5xl mx-auto text-[#000000] text-[16px]">
@@ -75,7 +75,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
         </div>
 
         {/* Tabs Navigation */}
-        <div className="bg-white rounded-[8px] shadow-sm py-2 px-3 w-full overflow-x-auto">
+        <div className="bg-white rounded-[8px] py-2 px-3 w-full overflow-x-auto">
           <div className="flex flex-nowrap md:flex-row justify-between items-center min-w-max md:min-w-0">
             {tabs.map((tab, index) => (
               <button
@@ -83,7 +83,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
                 onClick={() => setActiveTab(index)}
                 className={`px-4 md:px-6 py-3 text-[16px] md:text-[24px] font-bold rounded-[34px] transition-all duration-300 flex-1 text-center whitespace-nowrap cursor-pointer ${
                   activeTab === index
-                    ? 'bg-[#D02030] text-white shadow-md '
+                    ? 'bg-[#D02030] text-white'
                     : 'text-[#7D7D7D] hover:text-[#7D7D7D] hover:bg-black/5 '
                 }`}
               >
@@ -94,7 +94,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
         </div>
 
         {/* Tab Content Card */}
-        <div className="bg-white rounded-[16px] p-6 md:p-12 shadow-xl border border-black/5 animate-fade-in">
+        <div className="bg-white rounded-[16px] p-6 md:p-12 border border-black/5 animate-fade-in">
           <div className="space-y-12">
             {/* Content Title & Tags */}
             <div className="space-y-6">
@@ -122,7 +122,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
             <div className="flex flex-col lg:flex-row gap-8 items-stretch pt-4">
               {/* Image Part */}
               <div className="w-full lg:w-1/2">
-                <div className="relative aspect-4/3 w-full bg-[#F3F6FD] p-4 rounded-[8px] overflow-hidden shadow-sm h-full min-h-[300px]">
+                <div className="relative aspect-4/3 w-full bg-[#F3F6FD] p-4 rounded-[8px] overflow-hidden h-full min-h-[300px]">
                   <div className="relative w-full h-full">
                     {currentTab.image && (
                       <Media
