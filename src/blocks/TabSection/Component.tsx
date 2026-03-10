@@ -79,7 +79,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
               <button
                 key={`${tab.id || 'tab'}-${index}`}
                 onClick={() => setActiveTab(index)}
-                className={`px-4 md:px-6 py-3 text-[16px] md:text-[24px] font-bold rounded-[34px] transition-all duration-300 flex-1 text-center whitespace-nowrap cursor-pointer ${
+                className={`px-4 md:px-6 py-3 text-[16px] md:text-[20px] font-bold rounded-[34px] transition-all duration-300 flex-1 text-center whitespace-nowrap cursor-pointer ${
                   activeTab === index
                     ? 'bg-[#D02030] text-white'
                     : 'text-[#7D7D7D] hover:text-[#7D7D7D] hover:bg-black/5 '

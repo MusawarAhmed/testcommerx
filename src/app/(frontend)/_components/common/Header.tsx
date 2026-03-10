@@ -41,18 +41,19 @@ export default function Header() {
     >
       <nav className="site-containers flex items-center justify-between py-5 md:py-6">
         {/* Logo */}
-        <div className="flex items-center gap-12 lg:gap-16">
-          <Link href="/" className="flex items-center">
-            <Image
-              src={isLightPage ? '/Commerx-Logo-black.svg' : '/Commerx-Logo-Color.svg'}
-              alt="COMMERX"
-              width={180}
-              height={40}
-              className="h-7 md:h-10 w-auto"
-              priority
-            />
-          </Link>
+        <Link href="/" className="flex items-center">
+          <Image
+            src={isLightPage ? '/Commerx-Logo-black.svg' : '/Commerx-Logo-Color.svg'}
+            alt="COMMERX"
+            width={180}
+            height={40}
+            className="h-7 md:h-10 w-auto"
+            priority
+          />
+        </Link>
 
+        {/* Desktop Menu & CTA */}
+        <div className="flex items-center gap-6 lg:gap-10">
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] font-medium">
             <div
@@ -92,29 +93,29 @@ export default function Header() {
               About
             </Link>
           </div>
-        </div>
 
-        {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
-          <Link
-            href="/contact"
-            className="hidden md:flex bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-5 lg:px-6 py-2.5 rounded-sm text-[15px] lg:text-[16px] font-cal font-normal items-center gap-2 transition-all group"
-          >
-            Request a Consultation
-            <ArrowIcon color="#ffffff" className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+          {/* CTA & Mobile Toggle */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/contact"
+              className="hidden md:flex bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-5 lg:px-6 py-2.5 rounded-sm text-[15px] lg:text-[16px] font-cal font-normal items-center gap-2 transition-all group"
+            >
+              Request a Consultation
+              <ArrowIcon color="#ffffff" className="group-hover:translate-x-1 transition-transform" />
+            </Link>
 
-          <button
-            className="md:hidden p-1.5 rounded-md hover:bg-gray-100 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            {isMenuOpen ? (
-              <X className={`w-7 h-7 ${isLightPage ? 'text-black' : 'text-white'}`} />
-            ) : (
-              <Menu className={`w-7 h-7 ${isLightPage ? 'text-black' : 'text-white'}`} />
-            )}
-          </button>
+            <button
+              className="md:hidden p-1.5 rounded-md hover:bg-gray-100 transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? (
+                <X className={`w-7 h-7 ${isLightPage ? 'text-black' : 'text-white'}`} />
+              ) : (
+                <Menu className={`w-7 h-7 ${isLightPage ? 'text-black' : 'text-white'}`} />
+              )}
+            </button>
+          </div>
         </div>
       </nav>
 
