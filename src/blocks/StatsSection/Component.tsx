@@ -22,7 +22,7 @@ export const StatsSectionComponent: React.FC<Props> = ({
   stats = [],
 }) => {
   return (
-    <section className="relative py-35 bg-[#0A0A0A] overflow-hidden">
+    <section className="relative py-[80px] md:py-[144px] bg-[#0A0A0A] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-linear-to-br from-[#381926] from-1% to-[#05060F] to-100%" />
 

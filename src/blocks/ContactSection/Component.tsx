@@ -6,7 +6,7 @@ export const ContactSectionComponent: React.FC<ContactSectionBlock> = (props) =>
   const { heading, subtext } = props
 
   return (
-    <section className="py-20 relative z-10">
+    <section className="py-[80px] md:py-[144px] relative z-10">
       <div className="site-containers">
         <div className="text-center mb-16 space-y-4">
           {heading && (

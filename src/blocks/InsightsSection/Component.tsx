@@ -52,7 +52,7 @@ export const InsightsSectionComponent: React.FC<Props> = ({
   linkUrl,
 }) => {
   return (
-    <section className="relative py-35 bg-[#ffffff] overflow-hidden">
+    <section className="relative py-[80px] md:py-[144px] bg-[#ffffff] overflow-hidden">
       {/* Background Pattern */}
       {bgImage && (
         <div className="absolute -top-50 -left-125 w-[800px] h-[900px] z-0 pointer-events-none">

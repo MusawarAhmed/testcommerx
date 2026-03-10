@@ -11,7 +11,7 @@ export const GlobalPresenceSectionComponent: React.FC<GlobalPresenceSectionBlock
   const remainingWords = headingWords.slice(1).join(' ')
 
   return (
-    <section className="py-35 bg-white overflow-hidden">
+    <section className="py-[80px] md:py-[144px] bg-white overflow-hidden">
       <div className="site-containers">
         <div className="text-center mb-16">
           {heading && (

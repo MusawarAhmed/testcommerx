@@ -21,7 +21,7 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
     props
 
   return (
-    <section className="py-[150px] relative">
+    <section className="py-[80px] md:py-[144px] relative">
       {showBackgroundPatterns && (
         <>
           {/* Top Background Pattern */}

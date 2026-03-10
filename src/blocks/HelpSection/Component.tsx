@@ -6,11 +6,11 @@ export const HelpSectionComponent: React.FC<HelpSectionBlock> = (props) => {
   const { heading, items } = props
 
   return (
-    <section className="py-30 bg-white relative overflow-hidden">
+    <section className="py-[80px] md:py-[144px] bg-white relative overflow-hidden">
       <div className="absolute -right-[450px] -top-40 w-[1150px] h-[1200px] pointer-events-none">
         <Image src="/pathway-bg.png" alt="Background Pattern" fill className="object-contain" />
       </div>
-      <div className="containers relative z-10">
+      <div className="container relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-[32px] md:text-[48px] font-cal text-[#D02030] leading-tight">
             {heading || 'How We Can Help'}

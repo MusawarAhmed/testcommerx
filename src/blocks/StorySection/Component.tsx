@@ -8,7 +8,7 @@ export const StorySectionComponent: React.FC<StorySectionBlock> = (props) => {
   const { heading, content, image, showBackgroundPatterns } = props
 
   return (
-    <section className="py-35 bg-white relative overflow-hidden">
+    <section className="py-[80px] md:py-[144px] bg-white relative overflow-hidden">
       {showBackgroundPatterns && (
         <>
           {/* Background Pattern - Right Side */}

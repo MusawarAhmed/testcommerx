@@ -8,7 +8,7 @@ export const BetterWaySectionComponent: React.FC<Props> = (props) => {
   const { heading, items } = props
 
   return (
-    <section className="py-35 bg-[#000000] relative overflow-hidden">
+    <section className="py-[80px] md:py-[144px] bg-[#000000] relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-80">
         <Image

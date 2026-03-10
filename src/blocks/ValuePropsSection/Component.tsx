@@ -5,7 +5,7 @@ export const ValuePropsSectionComponent: React.FC<ValuePropsSectionBlock> = (pro
   const { heading, cards } = props
 
   return (
-    <section className="py-24 bg-black relative overflow-hidden">
+    <section className="py-[80px] md:py-[144px] bg-black relative overflow-hidden">
       {/* Background patterned overlay placeholder */}
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"

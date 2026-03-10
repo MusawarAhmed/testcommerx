@@ -9,7 +9,7 @@ export const CTASectionComponent: React.FC<CTASectionBlock> = (props) => {
   const { heading, description, form } = props
 
   return (
-    <section className="relative py-35 overflow-hidden">
+    <section className="relative py-[80px] md:py-[144px] overflow-hidden">
       <div className="absolute inset-0 z-0 bg-[#D02030]" />
       <div className="absolute inset-0 z-1">
         <Image

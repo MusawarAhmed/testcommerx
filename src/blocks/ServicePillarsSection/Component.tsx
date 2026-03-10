@@ -6,7 +6,7 @@ export const ServicePillarsSectionComponent: React.FC<ServicePillarsSectionBlock
   const { heading, introText, pillars } = props
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-[80px] md:py-[144px] bg-gray-50">
       <div className="site-containers">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           {heading && (

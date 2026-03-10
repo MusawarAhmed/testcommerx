@@ -7,7 +7,7 @@ export const ProcessCircleSectionComponent: React.FC<ProcessCircleSectionBlock> 
   const { heading, steps, centerImage, showBackgroundPatterns } = props
 
   return (
-    <section className="py-35 bg-white relative overflow-hidden">
+    <section className="py-[80px] md:py-[144px] bg-white relative overflow-hidden">
       {showBackgroundPatterns && (
         <div className="absolute top-0 -right-116 w-[800px] h-[900px] z-0 pointer-events-none rotate-180 opacity-60">
           <Image
