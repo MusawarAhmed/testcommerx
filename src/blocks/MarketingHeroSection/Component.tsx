@@ -33,16 +33,6 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
               className="object-contain object-top-left"
             />
           </div>
-
-          {/* Bottom Background Pattern */}
-          <div className="absolute top-[35%] -right-116 w-[800px] h-[900px] z-0 pointer-events-none rotate-180">
-            <Image
-              src="/home-insight-sec-bg.svg"
-              alt="Background Pattern"
-              fill
-              className="object-contain"
-            />
-          </div>
         </>
       )}
 
