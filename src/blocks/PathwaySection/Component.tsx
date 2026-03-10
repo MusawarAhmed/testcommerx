@@ -8,16 +8,11 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
   return (
     <section className="py-35 bg-white relative overflow-hidden">
       {/* Background Pattern - Faint red lines */}
-      <div className="absolute top-0 right-0 w-[600px] h-[800px] pointer-events-none opacity-50 translate-x-1/3 -translate-y-1/4">
-        <Image
-          src="/home-insight-sec-bg.svg" // Reusing the pattern seen in other sections
-          alt="Background Pattern"
-          fill
-          className="object-contain"
-        />
+      <div className="absolute -right-[450px] -top-25 w-[950px] h-[900px] pointer-events-none">
+        <Image src="/pathway-bg.png" alt="Background Pattern" fill className="object-cover" />
       </div>
 
-      <div className="site-containers grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+      <div className="container grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-24 items-center">
         {/* Left Content */}
         <div className="space-y-8 z-10">
           <h2 className="text-[32px] md:text-[56px] font-cal text-black leading-[1.1]">
@@ -70,7 +65,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
         </div>
 
         {/* Right Timeline */}
-        <div className="relative z-10 p-4">
+        <div className="relative z-10 p-4 col-span-2">
           <div className="space-y-12 lg:space-y-16">
             {steps && steps.length > 0
               ? steps.map((step, index) => (
@@ -96,7 +91,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
                         step.align === 'right' ? 'lg:pl-16' : 'lg:pr-16'
                       }`}
                     >
-                      <div className="bg-[#F3F6FD] p-6 rounded-[12px] shadow-sm hover:shadow-md transition-shadow">
+                      <div className="bg-[#F3F6FD] p-6 rounded-[12px] shadow-sm hover:shadow-md transition-shadow min-w-[240px]">
                         <h3 className="text-[20px] font-bold font-sans text-black mb-3">
                           {step.title}
                         </h3>
