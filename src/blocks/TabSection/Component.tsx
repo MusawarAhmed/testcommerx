@@ -134,7 +134,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
                   {/* Image Part — pre-rendered so it's already in memory */}
                   <div className="w-full lg:w-1/2 bg-[#F3F6FD] p-4 rounded-[8px]">
                     <div className="relative w-full overflow-hidden h-full min-h-[300px]">
-                      {tab.image && <Media resource={tab.image} fill className="object-cover" />}
+                      {tab.image && <Media resource={tab.image} fill imgClassName="object-cover" />}
                     </div>
                   </div>
 
