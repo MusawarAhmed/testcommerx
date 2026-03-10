@@ -74,7 +74,7 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
 
         {/* Tabs Navigation */}
         <div className="bg-white rounded-[8px] py-5 px-3 w-full overflow-x-auto">
-          <div className="flex flex-nowrap md:flex-row justify-between items-center min-w-max md:min-w-0">
+          <div className="flex flex-nowrap md:flex-row justify-between items-center min-w-max md:min-w-0 gap-x-5">
             {tabs.map((tab, index) => (
               <button
                 key={`${tab.id || 'tab'}-${index}`}
