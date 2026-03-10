@@ -110,13 +110,17 @@ export const TabSectionComponent: React.FC<Props> = ({ title, description, tabs 
                 {/* Content Title & Tags */}
                 <div className="space-y-6">
                   {tab.contentTitle && (
-                    <h3 className="text-[32px] md:text-[56px] font-bold text-black">
-                      {tab.contentTitle}
+                    <h3 className="text-[32px] md:text-[56px] font-normal font-cal text-black">
+                      {tab.contentTitle.trim().split(' ').slice(0, -1).join(' ')}
+                      {tab.contentTitle.trim().split(' ').length > 1 && ' '}
+                      <span className="text-[#D02030]">
+                        {tab.contentTitle.trim().split(' ').pop()}
+                      </span>
                     </h3>
                   )}
 
                   {tab.tags && tab.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 text-[14px] md:text-[16px] font-medium">
+                    <div className="flex flex-wrap gap-2 text-[14px] md:text-[16px] font-normal font-cal">
                       {tab.tags.map((tag, i) => (
                         <span
                           key={tag.id || i}
