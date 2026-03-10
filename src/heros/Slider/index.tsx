@@ -129,7 +129,7 @@ export const SliderHero: React.FC<Page['hero']> = ({ heroSlides }) => {
       {/* Bottom Tabs Component */}
       <div className="absolute bottom-12 left-0 w-full z-20">
         <div className="container">
-          <div className="flex flex-nowrap justify-between items-end border-t border-white/10 pt-8 overflow-x-auto no-scrollbar gap-8 md:gap-0">
+          <div className="flex flex-nowrap justify-between items-end pt-8 overflow-x-auto no-scrollbar gap-8 md:gap-0">
             {heroSlides.map((slide, index) => (
               <button
                 key={slide.id || index}
