@@ -8,7 +8,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
   return (
     <section className="py-[80px] md:py-[144px] bg-white relative overflow-hidden">
       {/* Background Pattern - Faint red lines */}
-      <div className="absolute -right-[450px] -top-25 w-[950px] h-[900px] pointer-events-none">
+      <div className="absolute -right-[450px] -top-25 w-[1150px] h-[1100px] pointer-events-none">
         <Image src="/pathway-bg.png" alt="Background Pattern" fill className="object-cover" />
       </div>
 
@@ -91,7 +91,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
                         step.align === 'right' ? 'lg:pl-16' : 'lg:pr-16'
                       }`}
                     >
-                      <div className="bg-[#F3F6FD] p-6 rounded-[12px] shadow-sm hover:shadow-md transition-shadow min-w-[200px]">
+                      <div className="bg-[#F3F6FD] p-6 rounded-[12px] min-w-[200px]">
                         <h3 className="text-[20px] font-bold font-sans text-black mb-3">
                           {step.title}
                         </h3>
