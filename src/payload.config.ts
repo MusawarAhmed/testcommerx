@@ -3,6 +3,7 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
@@ -90,6 +91,11 @@ export default buildConfig({
       },
     }),
   ],
+  email: resendAdapter({
+    apiKey: process.env.RESEND_API_KEY || '',
+    defaultFromAddress: process.env.RESEND_DEFAULT_FROM_ADDRESS || 'onboarding@resend.dev',
+    defaultFromName: process.env.RESEND_DEFAULT_FROM_NAME || 'Commerx',
+  }),
   secret: process.env.PAYLOAD_SECRET || '79c3141bd4b5b768098c',
   sharp,
   typescript: {

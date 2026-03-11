@@ -137,7 +137,28 @@ export const FormBlock: React.FC<
       <div className="">
         <FormProvider {...formMethods}>
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
-            <RichText data={confirmationMessage} />
+            <div className="bg-[#111111] border border-white/10 p-10 rounded-3xl text-center animate-in fade-in zoom-in duration-500 my-8 shadow-2xl">
+              <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#D02030]/20 text-[#D02030] mx-auto">
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+              </div>
+              <RichText
+                data={confirmationMessage}
+                className="text-white prose-h1:text-white prose-p:text-gray-300 mx-auto"
+              />
+            </div>
           )}
           {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
           {error && (
