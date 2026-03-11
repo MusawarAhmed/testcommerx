@@ -88,7 +88,13 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     slug: decodedSlug,
   })
 
-  return generateMeta({ doc: page })
+  const metadata = await generateMeta({ doc: page })
+
+  if (decodedSlug === 'home') {
+    metadata.title = "Canada's #1 IT Support & Service Company | Commerx"
+  }
+
+  return metadata
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
