@@ -4,8 +4,8 @@ import type { WhyCommerxSectionBlock } from '@/payload-types'
 export const WhyCommerxSectionComponent: React.FC<WhyCommerxSectionBlock> = (props) => {
   const { heading, description, items } = props
   return (
-    <section className="bg-black px-[120px] overflow-hidden relative py-[80px] md:py-[144px]">
-      <div className="site-containers mx-auto text-center relative z-10">
+    <section className="bg-black overflow-hidden relative py-[80px] md:py-[144px]">
+      <div className="site-containers text-center relative z-10">
         <h2 className="text-white text-[40px] md:text-[70px] font-bold leading-[1.1] mb-8">
           {heading || 'Why Commerx?'}
         </h2>

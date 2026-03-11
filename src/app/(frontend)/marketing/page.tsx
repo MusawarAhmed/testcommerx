@@ -152,7 +152,7 @@ export default function MarketingPage() {
           </div>
 
           {/* Map Section */}
-          <div className="site-containers relative w-full h-[300px] md:h-[600px] mb-20 px-[120px]">
+          <div className="site-containers relative h-[300px] md:h-[600px] mb-20">
             <div className="relative w-full h-full z-0">
               <Image
                 src="/contact_map.png"

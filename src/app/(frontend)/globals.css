@@ -51,45 +51,29 @@
 
 @layer utilities {
   .container {
-    width: 100%;
+    box-sizing: content-box;
     margin-inline: auto;
     padding-inline: 24px;
+    max-width: 1200px;
   }
 
-  @variant sm {
-    .container {
-      max-width: var(--breakpoint-sm);
-    }
+  .site-containers {
+    box-sizing: content-box;
+    margin-inline: auto;
+    padding-inline: 24px;
+    max-width: 1200px;
   }
 
-  @variant md {
-    .container {
-      max-width: var(--breakpoint-md);
+  @media (min-width: 768px) {
+    .site-containers {
       padding-inline: 64px;
     }
   }
 
-  @variant lg {
-    .container {
-      max-width: var(--breakpoint-lg);
+  @media (min-width: 1024px) {
+    .site-containers {
       padding-inline: 120px;
     }
-  }
-
-  @variant xl {
-    .container {
-      max-width: 1200px;
-    }
-  }
-
-  @variant 2xl {
-    .container {
-      max-width: 1200px;
-    }
-  }
-
-  .site-containers {
-    @apply w-full max-w-[1200px] mx-auto px-[24px] md:px-[64px] lg:px-[120px];
   }
 }
 
@@ -221,7 +205,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    @apply bg-background text-foreground min-h-screen flex flex-col;
     font-family: var(--font-inter);
     overflow-x: hidden;
   }
