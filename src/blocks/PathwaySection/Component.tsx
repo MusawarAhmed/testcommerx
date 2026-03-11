@@ -8,7 +8,7 @@ export const PathwaySectionComponent: React.FC<PathwaySectionBlock> = (props) =>
   return (
     <section className="py-[80px] md:py-[144px] bg-white relative overflow-hidden">
       {/* Background Pattern - Faint red lines */}
-      <div className="absolute -right-[450px] -top-25 w-[1150px] h-[1100px] pointer-events-none">
+      <div className="absolute -right-[450px] -top-25 w-[1150px] h-[1000px] pointer-events-none">
         <Image src="/pathway-bg.png" alt="Background Pattern" fill className="object-cover" />
       </div>
 
