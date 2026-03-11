@@ -8,11 +8,11 @@ import { ChevronDown, Menu, X } from 'lucide-react'
 import { ArrowIcon } from '../layout/Icons'
 
 const solutions = [
-  { name: 'IT & Technology', href: '/services/it-technology' },
-  { name: 'Telecom', href: '/services/telecom' },
+  { name: 'IT & Technology', href: '/services/it-technology-solutions' },
+  { name: 'Telecom', href: '/services/telecom-network-infrastructure' },
   { name: 'GPS Tracking', href: '/services/gps-tracking' },
   { name: 'Marketing', href: '/services/marketing' },
-  { name: 'Reputation', href: '/services/reputation' },
+  { name: 'Reputation', href: '/services/reputation-management' },
 ]
 
 export default function Header() {
