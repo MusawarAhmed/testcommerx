@@ -26,7 +26,30 @@ export const Media: CollectionConfig = {
   hooks: {
     afterRead: [
       ({ doc }) => {
-        // Fix Supabase URL to use the public object endpoint instead of the S3 endpoint
+        const cfHash = process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_HASH
+        const cfDeliveryUrl = process.env.NEXT_PUBLIC_CLOUDFLARE_DELIVERY_URL || 'imagedelivery.net'
+
+        // If this image has been migrated to Cloudflare, rewrite ALL urls
+        if (doc.cloudflareImageId && cfHash) {
+          const baseUrl = cfDeliveryUrl.startsWith('http')
+            ? cfDeliveryUrl.replace(/\/$/, '')
+            : `https://${cfDeliveryUrl.replace(/\/$/, '')}`
+
+          doc.url = `${baseUrl}/${cfHash}/${doc.cloudflareImageId}/public`
+
+          // Also rewrite all size variant URLs so thumbnails etc. come from CF
+          if (doc.sizes) {
+            for (const sizeKey of Object.keys(doc.sizes)) {
+              if (doc.sizes[sizeKey]?.url) {
+                doc.sizes[sizeKey].url = `${baseUrl}/${cfHash}/${doc.cloudflareImageId}/public`
+              }
+            }
+          }
+
+          return doc
+        }
+
+        // Fallback: Fix Supabase URL for non-migrated images
         if (doc.url && doc.url.includes('supabase.co') && doc.url.includes('/s3/')) {
           doc.url = doc.url.replace('/s3/', '/object/public/')
         }
@@ -48,6 +71,13 @@ export const Media: CollectionConfig = {
           return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
         },
       }),
+    },
+    {
+      name: 'cloudflareImageId',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
     },
   ],
   upload: {

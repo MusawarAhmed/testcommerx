@@ -1,4 +1,4 @@
-import * as migration_20260302_123944_latest_blocks from './20260302_123944_latest_blocks'
+import * as migration_20260302_123944_latest_blocks from './20260302_123944_latest_blocks';
 
 export const migrations = [
   {
@@ -6,4 +6,4 @@ export const migrations = [
     down: migration_20260302_123944_latest_blocks.down,
     name: '20260302_123944_latest_blocks',
   },
-]
+];

@@ -39,6 +39,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@rawkode.academy/payload-plugin-cloudflare-images": "^0.1.16",
     "@userback/widget": "^0.3.12",
     "cal-sans": "^1.0.1",
     "class-variance-authority": "^0.7.0",
@@ -56,6 +57,7 @@
     "react-dom": "19.2.1",
     "react-hook-form": "7.45.4",
     "sharp": "0.34.2",
+    "supabase": "^2.78.1",
     "swiper": "^12.1.1",
     "tailwind-merge": "^3.4.0"
   },
