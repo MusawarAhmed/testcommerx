@@ -110,13 +110,13 @@ export default function TabSection({ data, legacyCapabilities }: TabSectionProps
         </div>
 
         {/* Tabs Navigation */}
-        <div className="bg-white rounded-[8px] shadow-sm py-2 px-3 w-full overflow-x-auto">
-          <div className="flex flex-nowrap md:flex-row justify-between items-center min-w-max md:min-w-0">
+        <div className="bg-white rounded-[8px] shadow-sm py-2 px-3 w-full">
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-4">
             {tabs.map((cap, index) => (
               <button
                 key={cap.id || index}
                 onClick={() => setActiveTab(index)}
-                className={`px-4 md:px-6 py-3 text-[16px] md:text-[24px] font-cal rounded-[34px] transition-all duration-300 flex-1 text-center whitespace-nowrap cursor-pointer ${
+                className={`px-4 md:px-6 py-3 text-[16px] md:text-[24px] font-cal rounded-[34px] transition-all duration-300 text-center whitespace-nowrap cursor-pointer ${
                   activeTab === index
                     ? 'bg-[#D02030] text-white shadow-md '
                     : 'text-[#7D7D7D] hover:text-[#7D7D7D] hover:bg-black/5 '

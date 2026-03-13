@@ -28,18 +28,37 @@ export const GET = async (request: Request) => {
     )
   }
 
-  // Diagnostic: Test token validity
+  // Diagnostic: Test token validity and Images API access
   if (testAuth) {
     try {
+      // 1. Verify token basic status
       const verifyRes = await fetch('https://api.cloudflare.com/client/v4/user/tokens/verify', {
         headers: { Authorization: `Bearer ${CF_API_TOKEN}` },
       })
       const verifyData = await verifyRes.json()
+
+      // 2. Try to list images (limit 1) to check specific Images API access
+      const imagesListRes = await fetch(
+        `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/images/v1?per_page=1`,
+        {
+          headers: { Authorization: `Bearer ${CF_API_TOKEN}` },
+        },
+      )
+      const imagesListData = await imagesListRes.json()
+
       return NextResponse.json({
-        message: 'Token Verification Results',
-        status: verifyRes.status,
-        data: verifyData,
-        accountId: `${CF_ACCOUNT_ID.substring(0, 4)}...${CF_ACCOUNT_ID.substring(CF_ACCOUNT_ID.length - 4)}`,
+        message: 'Cloudflare Diagnostic Results',
+        tokenStatus: verifyData.result?.status || 'unknown',
+        tokenDetails: verifyData,
+        imagesApi: {
+          status: imagesListRes.status,
+          success: imagesListData.success,
+          errorMessage: imagesListData.errors?.[0]?.message || (imagesListRes.status !== 200 ? 'HTTP Error' : 'none'),
+          raw: imagesListData,
+        },
+        envMatch: {
+          accountId: CF_ACCOUNT_ID,
+        },
       })
     } catch (err) {
       return NextResponse.json({ error: 'Failed to reach Cloudflare API', detail: String(err) }, { status: 500 })
