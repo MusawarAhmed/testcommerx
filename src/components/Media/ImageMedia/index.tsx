@@ -84,6 +84,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
         .join(', ')
 
+  const isCloudflare = typeof src === 'string' && src.includes('imagedelivery.net')
+
   return (
     <picture className={cn(pictureClassName)}>
       <NextImage
@@ -98,6 +100,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         loading={loading}
         sizes={sizes}
         src={src}
+        unoptimized={isCloudflare}
         width={!fill ? width : undefined}
       />
     </picture>

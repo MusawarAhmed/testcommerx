@@ -31,17 +31,20 @@ export const Media: CollectionConfig = {
 
         // If this image has been migrated to Cloudflare, rewrite ALL urls
         if (doc.cloudflareImageId && cfHash) {
-          const baseUrl = cfDeliveryUrl.startsWith('http')
-            ? cfDeliveryUrl.replace(/\/$/, '')
-            : `https://${cfDeliveryUrl.replace(/\/$/, '')}`
+          // Ensure we don't double up the hash if it's already in the delivery URL
+          const base = cfDeliveryUrl.replace(/\/$/, '')
+          const baseUrl = base.includes(cfHash)
+            ? base.split(cfHash)[0].replace(/\/$/, '')
+            : base
 
-          doc.url = `${baseUrl}/${cfHash}/${doc.cloudflareImageId}/public`
+          const finalBaseUrl = baseUrl.startsWith('http') ? baseUrl : `https://${baseUrl}`
+          doc.url = `${finalBaseUrl}/${cfHash}/${doc.cloudflareImageId}/public`
 
           // Also rewrite all size variant URLs so thumbnails etc. come from CF
           if (doc.sizes) {
             for (const sizeKey of Object.keys(doc.sizes)) {
               if (doc.sizes[sizeKey]?.url) {
-                doc.sizes[sizeKey].url = `${baseUrl}/${cfHash}/${doc.cloudflareImageId}/public`
+                doc.sizes[sizeKey].url = `${finalBaseUrl}/${cfHash}/${doc.cloudflareImageId}/public`
               }
             }
           }
