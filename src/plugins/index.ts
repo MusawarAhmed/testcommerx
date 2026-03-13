@@ -58,6 +58,26 @@ export const plugins: Plugin[] = [
     fields: {
       payment: false,
     },
+    // @ts-ignore
+    beforeEmail: (emails) => {
+      return emails.map((email) => {
+        const processEmails = (field?: string | null) => {
+          if (typeof field === 'string' && field.includes(',')) {
+            return field
+              .split(',')
+              .map((e) => e.trim())
+              .filter(Boolean)
+          }
+          return field
+        }
+
+        return {
+          ...email,
+          cc: processEmails(email.cc),
+          bcc: processEmails(email.bcc),
+        } as any
+      })
+    },
     formOverrides: {
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {

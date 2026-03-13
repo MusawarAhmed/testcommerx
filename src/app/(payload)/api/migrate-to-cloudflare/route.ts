@@ -37,7 +37,13 @@ export const GET = async (request: Request) => {
       })
       const verifyData = await verifyRes.json()
 
-      // 2. Try to list images (limit 1) to check specific Images API access
+      // 2. Try to list accessible accounts
+      const accountsRes = await fetch('https://api.cloudflare.com/client/v4/accounts', {
+        headers: { Authorization: `Bearer ${CF_API_TOKEN}` },
+      })
+      const accountsData = await accountsRes.json()
+
+      // 3. Try to list images (limit 1) to check specific Images API access
       const imagesListRes = await fetch(
         `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/images/v1?per_page=1`,
         {
@@ -50,13 +56,16 @@ export const GET = async (request: Request) => {
         message: 'Cloudflare Diagnostic Results',
         tokenStatus: verifyData.result?.status || 'unknown',
         tokenDetails: verifyData,
+        accessibleAccounts: accountsData.success 
+          ? accountsData.result.map((a: any) => ({ id: a.id, name: a.name }))
+          : { error: 'Could not list accounts', raw: accountsData },
         imagesApi: {
           status: imagesListRes.status,
           success: imagesListData.success,
           errorMessage: imagesListData.errors?.[0]?.message || (imagesListRes.status !== 200 ? 'HTTP Error' : 'none'),
           raw: imagesListData,
         },
-        envMatch: {
+        envConfig: {
           accountId: CF_ACCOUNT_ID,
         },
       })
