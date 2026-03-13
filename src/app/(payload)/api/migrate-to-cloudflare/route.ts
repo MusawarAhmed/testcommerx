@@ -8,6 +8,7 @@ export const GET = async (request: Request) => {
 
   // Options
   const dryRun = searchParams.get('dryRun') === 'true'
+  const testAuth = searchParams.get('testAuth') === 'true'
   const limitCount = parseInt(searchParams.get('limit') || '0') // 0 = unlimited
   const limitMB = parseInt(searchParams.get('limitMB') || '500') // Default 500MB safety cap
 
@@ -25,6 +26,24 @@ export const GET = async (request: Request) => {
       { error: 'Missing CLOUDFLARE_ACCOUNT_ID or CLOUDFLARE_API_TOKEN in .env' },
       { status: 500 },
     )
+  }
+
+  // Diagnostic: Test token validity
+  if (testAuth) {
+    try {
+      const verifyRes = await fetch('https://api.cloudflare.com/client/v4/user/tokens/verify', {
+        headers: { Authorization: `Bearer ${CF_API_TOKEN}` },
+      })
+      const verifyData = await verifyRes.json()
+      return NextResponse.json({
+        message: 'Token Verification Results',
+        status: verifyRes.status,
+        data: verifyData,
+        accountId: `${CF_ACCOUNT_ID.substring(0, 4)}...${CF_ACCOUNT_ID.substring(CF_ACCOUNT_ID.length - 4)}`,
+      })
+    } catch (err) {
+      return NextResponse.json({ error: 'Failed to reach Cloudflare API', detail: String(err) }, { status: 500 })
+    }
   }
 
   const results: { filename: string; status: string; size?: number; cloudflareId?: string; error?: string }[] = []
