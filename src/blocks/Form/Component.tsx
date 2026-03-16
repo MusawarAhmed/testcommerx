@@ -48,7 +48,7 @@ export const FormBlock: React.FC<
     introContent,
   } = props
 
-  const formMethods = useForm({
+  const formMethods = useForm<any>({
     defaultValues: formFromProps.fields,
   })
   const {
@@ -67,12 +67,12 @@ export const FormBlock: React.FC<
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
   const onSubmit = useCallback(
-    (data: FormFieldBlock[]) => {
+    (data: any) => {
       let loadingTimerID: ReturnType<typeof setTimeout>
       const submitForm = async () => {
         setError(undefined)
 
-        const dataToSend = Object.entries(data).map(([name, value]) => ({
+        const dataToSend: any[] = Object.entries(data).map(([name, value]) => ({
           field: name,
           value,
         }))
