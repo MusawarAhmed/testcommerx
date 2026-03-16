@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
 import { fields } from './fields'
+import { Turnstile } from '@marsidev/react-turnstile'
 import { getClientSideURL } from '@/utilities/getURL'
 import { cn } from '@/utilities/ui'
 
@@ -60,7 +61,10 @@ export const FormBlock: React.FC<
   const [isLoading, setIsLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
   const router = useRouter()
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
   const onSubmit = useCallback(
     (data: FormFieldBlock[]) => {
@@ -72,6 +76,24 @@ export const FormBlock: React.FC<
           field: name,
           value,
         }))
+
+        // Add Turnstile token and Honeypot if available
+        if (turnstileToken) {
+          dataToSend.push({
+            field: '_turnstileToken',
+            value: turnstileToken,
+          })
+        }
+
+        // Get Honeypot value (it's a ref or we can just grab it from the form data if we register it)
+        // For simplicity, let's just grab it from the form methods
+        const honeypotValue = formMethods.getValues('hp_website')
+        if (honeypotValue) {
+          dataToSend.push({
+            field: '_hp_website',
+            value: honeypotValue,
+          })
+        }
 
         // delay loading indicator by 1s
         loadingTimerID = setTimeout(() => {
@@ -126,7 +148,7 @@ export const FormBlock: React.FC<
 
       void submitForm()
     },
-    [router, formID, redirect, confirmationType],
+    [router, formID, redirect, confirmationType, turnstileToken, formMethods],
   )
 
   return (
@@ -167,6 +189,16 @@ export const FormBlock: React.FC<
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-wrap -mx-4">
+                {/* Honeypot field - hidden from users */}
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    {...register('hp_website')}
+                    tabIndex={-1}
+                  />
+                </div>
+
                 {formFromProps &&
                   formFromProps.fields &&
                   formFromProps.fields?.map((field, index) => {
@@ -189,13 +221,32 @@ export const FormBlock: React.FC<
                   })}
               </div>
 
+              {siteKey && (
+                <div className="pt-4 px-4 overflow-hidden">
+                  <Turnstile
+                    siteKey={siteKey}
+                    onSuccess={(token) => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken(null)}
+                    onError={() => setTurnstileToken(null)}
+                    options={{
+                      theme: 'dark',
+                    }}
+                  />
+                </div>
+              )}
+
               <div className="pt-8">
                 <button
                   form={formID}
                   type="submit"
-                  className="bg-[#D02030] text-white px-10 py-3 rounded-full font-cal text-[14px] cursor-pointer hover:bg-[#B01A28] transition-all transform hover:scale-105"
+                  disabled={siteKey ? !turnstileToken || isLoading : isLoading}
+                  className={cn(
+                    'bg-[#D02030] text-white px-10 py-3 rounded-full font-cal text-[14px] cursor-pointer hover:bg-[#B01A28] transition-all transform hover:scale-105',
+                    siteKey && !turnstileToken && 'opacity-50 cursor-not-allowed hover:scale-100',
+                    isLoading && 'opacity-50 cursor-not-allowed'
+                  )}
                 >
-                  {submitButtonLabel}
+                  {isLoading ? 'Sending...' : submitButtonLabel}
                 </button>
               </div>
             </form>

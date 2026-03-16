@@ -23,15 +23,17 @@ export async function Footer() {
         <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
           <ThemeSelector />
           <nav className="flex flex-col md:flex-row gap-4">
-            {navItems.map(({ link }, i) => {
-              return (
-                <CMSLink
-                  className="text-white"
-                  key={`${link.label || link.url || 'footer'}-${i}`}
-                  {...link}
-                />
-              )
-            })}
+            {navItems
+              .filter(({ link }) => link.label !== 'Insights' && !link.url?.startsWith('/posts'))
+              .map(({ link }, i) => {
+                return (
+                  <CMSLink
+                    className="text-white"
+                    key={`${link.label || link.url || 'footer'}-${i}`}
+                    {...link}
+                  />
+                )
+              })}
           </nav>
         </div>
       </div>
