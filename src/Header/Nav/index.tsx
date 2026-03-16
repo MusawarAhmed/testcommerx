@@ -14,7 +14,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   return (
     <nav className="flex gap-3 items-center">
       {navItems
-        .filter(({ link }) => link.label !== 'Insights' && !link.url?.startsWith('/posts'))
+        .filter(({ link }) => link.label !== 'Insights' && !link.url?.startsWith('/blog'))
         .map(({ link }, i) => {
           return (
             <CMSLink key={`${link.label || link.url || 'nav'}-${i}`} {...link} appearance="link" />

@@ -24,7 +24,7 @@ export async function Footer() {
           <ThemeSelector />
           <nav className="flex flex-col md:flex-row gap-4">
             {navItems
-              .filter(({ link }) => link.label !== 'Insights' && !link.url?.startsWith('/posts'))
+              .filter(({ link }) => link.label !== 'Insights' && !link.url?.startsWith('/blog'))
               .map(({ link }, i) => {
                 return (
                   <CMSLink
