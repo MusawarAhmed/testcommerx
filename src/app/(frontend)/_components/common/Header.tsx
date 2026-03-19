@@ -86,9 +86,9 @@ export default function Header() {
               </div>
             </div>
 
-            <Link href="/blog" className="hover:text-[#D32F2F] transition-colors">
+            {/* <Link href="/blog" className="hover:text-[#D32F2F] transition-colors">
               Insights
-            </Link>
+            </Link> */}
             <Link href="/about-us" className="hover:text-[#D32F2F] transition-colors">
               About
             </Link>
