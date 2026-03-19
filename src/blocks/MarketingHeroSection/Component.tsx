@@ -25,7 +25,7 @@ export const MarketingHeroSectionComponent: React.FC<Props> = (props) => {
       {showBackgroundPatterns && (
         <>
           {/* Top Background Pattern */}
-          <div className="absolute -top-25 -left-125 w-[800px] h-[900px] z-0 pointer-events-none ">
+          <div className="absolute -top-25 -left-125 w-[800px] h-[900px] z-11 pointer-events-none ">
             <Image
               src="/home-insight-sec-bg.svg"
               alt="Background Pattern"
