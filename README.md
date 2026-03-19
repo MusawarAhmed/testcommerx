@@ -1,27 +1,30 @@
-# Payload Website Template
+# Commerx - Integrated Enterprise Solutions
 
-This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
+**Commerx** is a high-performance, full-stack digital platform designed for modern enterprise services. Built with the latest **Payload CMS 3.x** and **Next.js 15**, it combines a powerful headless backend with a stunning, SEO-optimized frontend to deliver intelligent, real-time decision power.
 
-This template is right for you if you are working on:
+## 🚀 Technology Stack
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router, React 19)
+- **CMS**: [Payload CMS 3.x](https://payloadcms.com/) (TypeScript-first, Headless)
+- **Database**: PostgreSQL (via Payload Postgres Adapter)
+- **Styling**: Tailwind CSS & [shadcn/ui](https://ui.shadcn.com/)
+- **Storage**: Supabase / S3 (S3 Storage Plugin)
+- **Email**: Resend (Resend Email Adapter)
 
-- A personal or enterprise-grade website, blog, or portfolio
-- A content publishing platform with a fully featured publication workflow
-- Exploring the capabilities of Payload
+## ✨ Strategic Capabilities
+This platform is engineered to manage complex service architectures across five core industries:
+1. **IT & Technology**: Modernizing infrastructure and securing data.
+2. **Telecom & Network**: High-performance connectivity for global enterprises.
+3. **IoT & Connected Systems**: Intelligent data transformations and real-time monitoring.
+4. **Marketing & Branding**: Measurable impact through smart GTM strategy.
+5. **Reputation Management**: Building trust and resilience through intelligent control.
 
-Core features:
+## 🛠 Project Features
+- **Dynamic Block Builder**: Create unique layouts using custom blocks (Marketing Hero, Pathway, Insights, Stats, and more).
+- **Live Preview**: Real-time visual editing directly in the admin panel with multi-breakpoint support.
+- **Advanced Publication Workflow**: Full support for drafts, versioning, and scheduled publishing.
+- **Global Data Management**: Centralized control over Header, Footer, and site-wide settings.
+- **Enterprise Ready**: Full support for RBAC (Role-Based Access Control) and PostgreSQL transactions.
 
-- [Pre-configured Payload Config](#how-it-works)
-- [Authentication](#users-authentication)
-- [Access Control](#access-control)
-- [Layout Builder](#layout-builder)
-- [Draft Preview](#draft-preview)
-- [Live Preview](#live-preview)
-- [On-demand Revalidation](#on-demand-revalidation)
-- [SEO](#seo)
-- [Search](#search)
-- [Redirects](#redirects)
-- [Jobs and Scheduled Publishing](#jobs-and-scheduled-publish)
-- [Website](#website)
 
 ## Quick Start
 

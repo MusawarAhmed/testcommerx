@@ -1,7 +1,7 @@
 {
-  "name": "payloadapp",
+  "name": "commerx",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "Enterprise-grade service platform built with Payload CMS 3.x and Next.js 15.",
   "license": "MIT",
   "type": "module",
   "scripts": {
