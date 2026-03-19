@@ -52,19 +52,18 @@ export const CTASectionComponent: React.FC<CTASectionBlock> = (props) => {
           ) : (
             <ContactForm />
           )}
-
-          {isContactPage && (
-            <div className="absolute -right-[450px] -top-40 w-[1150px] h-[1200px] pointer-events-none -z-10">
-              <Image
-                src="/pathway-bg.png"
-                alt="Background Pattern"
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
         </div>
       </div>
+      {isContactPage && (
+        <div className="absolute -right-[600px] -top-60 w-[1150px] h-[1200px] pointer-events-none -z-10">
+          <Image
+            src="/pathway-bg.png"
+            alt="Background Pattern"
+            fill
+            className="object-contain"
+          />
+        </div>
+      )}
     </section>
   )
 }
