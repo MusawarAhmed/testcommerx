@@ -1,5 +1,8 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import type { CTASectionBlock } from '@/payload-types'
 import ContactForm from '@/app/(frontend)/_components/common/ContactForm'
 import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
@@ -7,35 +10,58 @@ import { FormBlock } from '../Form/Component'
 
 export const CTASectionComponent: React.FC<CTASectionBlock> = (props) => {
   const { heading, description, form } = props
+  const pathname = usePathname()
+  const isContactPage = pathname === '/contact'
 
   return (
     <section className="relative py-[80px] md:py-[144px] overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-[#D02030]" />
-      <div className="absolute inset-0 z-1">
-        <Image
-          src="/cta-bg1.png"
-          alt="Background Pattern"
-          fill
-          className="object-cover object-center"
-          priority
-        />
-      </div>
+      {!isContactPage && (
+        <>
+          <div className="absolute inset-0 z-0 bg-[#D02030]" />
+          <div className="absolute inset-0 z-1">
+            <Image
+              src="/cta-bg1.png"
+              alt="Background Pattern"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </div>
+        </>
+      )}
 
       <div className="site-containers relative z-10">
         <div className="text-center mb-12 space-y-6">
-          <h2 className="text-[28px] md:text-[48px] font-cal text-white leading-tight">
+          <h2
+            className={`text-[28px] md:text-[48px] font-cal leading-tight ${isContactPage ? 'text-[#000000]' : 'text-white'}`}
+          >
             {heading || "Let's Build Your Next Competitive Advantage"}
           </h2>
           {description && (
-            <p className="text-[16px] font-sans font-normal text-white">{description}</p>
+            <p
+              className={`text-[16px] font-sans font-normal ${isContactPage ? 'text-[#D02030]' : 'text-white'}`}
+            >
+              {description}
+            </p>
           )}
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white rounded-[4px] shadow-2xl p-6 md:p-12">
+        <div className="max-w-4xl mx-auto bg-white rounded-[4px] shadow-2xl p-6 md:p-12 relative">
           {form && typeof form === 'object' ? (
             <FormBlock form={form as unknown as FormType} enableIntro={false} />
           ) : (
             <ContactForm />
+          )}
+
+          {isContactPage && (
+            <div className="absolute -right-[450px] -top-40 w-[1150px] h-[1200px] pointer-events-none -z-10">
+              <Image
+                src="/pathway-bg.png"
+                alt="Background Pattern"
+                fill
+                className="object-contain"
+              />
+            </div>
           )}
         </div>
       </div>
