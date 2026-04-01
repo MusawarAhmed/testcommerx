@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+import { toKebabCase } from '@/utilities/toKebabCase'
 import { Media } from '@/components/Media'
 import type { Media as MediaType } from '@/payload-types'
 
@@ -33,10 +35,13 @@ export const WhatWeDoSectionComponent: React.FC<Props> = (props) => {
             )}
           </div>
           {items?.map((item, index) => (
-            <div
+            <Link
+              href={`/services/${toKebabCase(item.title)}`}
               key={item.id || index}
-              className={`rounded-2xl p-8 md:p-10 flex flex-col items-start text-left h-full hover:shadow-md transition-shadow duration-300 group ${
-                index === 0 ? 'bg-[#D02030] text-white' : 'bg-[#FFFFFF] text-black'
+              className={`rounded-2xl p-8 md:p-10 flex flex-col items-start text-left h-full hover:shadow-lg transition-all duration-300 group ${
+                index === 0
+                  ? 'bg-[#D02030] text-white'
+                  : 'bg-white text-black hover:bg-[#D02030] hover:text-white'
               }`}
             >
               {/* Icon */}
@@ -47,20 +52,20 @@ export const WhatWeDoSectionComponent: React.FC<Props> = (props) => {
               )}
 
               <h3
-                className={`text-[18px] md:text-[24px] font-bold font-sans mb-4 ${
-                  index === 0 ? 'text-white' : 'text-black'
+                className={`text-[18px] md:text-[24px] font-bold font-sans mb-4 transition-colors duration-300 ${
+                  index === 0 ? 'text-white' : 'text-black group-hover:text-white'
                 }`}
               >
                 {item.title}
               </h3>
               <p
-                className={`text-[12px] md:text-[14px] font-sans leading-relaxed ${
-                  index === 0 ? 'text-white' : 'text-[#555555]'
+                className={`text-[12px] md:text-[14px] font-sans leading-relaxed transition-colors duration-300 ${
+                  index === 0 ? 'text-white' : 'text-[#555555] group-hover:text-white'
                 }`}
               >
                 {item.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
