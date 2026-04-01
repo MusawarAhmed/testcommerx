@@ -34,39 +34,47 @@ export const WhatWeDoSectionComponent: React.FC<Props> = (props) => {
               </p>
             )}
           </div>
-          {items?.map((item, index) => (
-            <Link
-              href={`/services/${toKebabCase(item.title)}`}
-              key={item.id || index}
-              className={`rounded-2xl p-8 md:p-10 flex flex-col items-start text-left h-full hover:shadow-lg transition-all duration-300 group ${
-                index === 0
-                  ? 'bg-[#D02030] text-white'
-                  : 'bg-white text-black hover:bg-[#D02030] hover:text-white'
-              }`}
-            >
-              {/* Icon */}
-              {item.icon && (
-                <div className="w-[56px] h-[56px] mb-6 relative shrink-0">
-                  <Media resource={item.icon} fill imgClassName="object-contain" />
-                </div>
-              )}
+          {items?.map((item, index) => {
+            let href = `/services/${toKebabCase(item.title)}`
 
-              <h3
-                className={`text-[18px] md:text-[24px] font-bold font-sans mb-4 transition-colors duration-300 ${
-                  index === 0 ? 'text-white' : 'text-black group-hover:text-white'
+            if (item.title === 'IoT, Telematics & Connected Systems') {
+              href = '/services/gps-tracking'
+            } else if (item.title === 'Marketing & Branding') {
+              href = '/services/marketing'
+            }
+
+            return (
+              <Link
+                href={href}
+                key={item.id || index}
+                className={`rounded-2xl p-8 md:p-10 flex flex-col items-start text-left h-full hover:shadow-lg transition-all duration-300 group ${
+                  index === 0 ? 'bg-[#D02030] text-white' : 'bg-white text-black'
                 }`}
               >
-                {item.title}
-              </h3>
-              <p
-                className={`text-[12px] md:text-[14px] font-sans leading-relaxed transition-colors duration-300 ${
-                  index === 0 ? 'text-white' : 'text-[#555555] group-hover:text-white'
-                }`}
-              >
-                {item.description}
-              </p>
-            </Link>
-          ))}
+                {/* Icon */}
+                {item.icon && (
+                  <div className="w-[56px] h-[56px] mb-6 relative shrink-0">
+                    <Media resource={item.icon} fill imgClassName="object-contain" />
+                  </div>
+                )}
+
+                <h3
+                  className={`text-[18px] md:text-[24px] font-bold font-sans mb-4 transition-colors duration-300 ${
+                    index === 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  className={`text-[12px] md:text-[14px] font-sans leading-relaxed transition-colors duration-300 ${
+                    index === 0 ? 'text-white' : 'text-[#555555]'
+                  }`}
+                >
+                  {item.description}
+                </p>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
